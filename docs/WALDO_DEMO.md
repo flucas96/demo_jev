@@ -14,8 +14,12 @@ a standalone round. Changing the model ends the current round and keeps its part
 The result screen offers **Choose another model**.
 
 Presentation mode uses a dark arcade layout: LLM first, then an automatic scroll transition
-and a three-second countdown into Jev. Live metrics stay visible; standings and charts are
-revealed only after both rounds. Reduced-motion preferences disable animated scrolling. Jev locates Waldo with the `box` primitive; gateway models return JSON coordinates.
+to Jev’s ready screen. **Start the game** opens the arena without starting a round.
+Each round waits for its **Start round 1** or **Start round 2** button before the three-second
+countdown. Waiting never starts the game or makes model calls. Live metrics stay visible;
+standings and charts are revealed only after both rounds. Reduced-motion preferences
+disable animated scrolling. Jev locates Waldo with the `box` primitive; gateway models
+return JSON coordinates.
 Both AIs get one attempt per image, immediately moving on after a miss or malformed box.
 Both players see the same unmarked image
 bytes in the same shuffled order, advancing independently. The default duel lasts
@@ -39,7 +43,8 @@ reference boxes, previous attempts, or generated confidence claims are supplied.
 
 Gateway cost comes from `x-litellm-response-cost`, which includes cache charges. Without
 that header, input/output list prices from the supplied 2026-10-15 catalogue give an
-estimate. The visible label is simply Cost; tooltips explain the calculation. Unknown usage is not shown as zero cost. Errors and pending calls are marked as
+estimate. The Cost column shows the amount without grey billing-source captions; hover
+text explains the calculation. Unknown usage is not shown as zero cost. Errors and pending calls are marked as
 potentially unbilled in the displayed subtotal; cancelling a request does not guarantee
 the provider stops billing. Jev still uses the input-token estimate described below.
 
@@ -48,9 +53,10 @@ SQLite stores server-scored runs in `.local/waldo.sqlite3`, ignored by Git. Set
 the comparison. Stopped, disconnected, and failed runs remain visible without rank.
 The leaderboard shows the latest 500 records, filtered by equal duration and ranked by
 points and accuracy, with separate human and model rows. Ties retain chronological order.
-It stores no API keys or image payloads. Two scatter charts show points on the x-axis and
-average response time or cost on the y-axis. Each provider logo represents one completed
-model run; inspect it by hover or keyboard focus. Unknown metrics are omitted, and partial
+It stores no API keys or image payloads. Two scatter charts show points on the y-axis and
+average response time or cost on the x-axis. Higher and further left is better.
+Each provider logo represents one completed model run; inspect it by hover or keyboard
+focus. Unknown metrics are omitted, and partial
 costs are marked. Charts use the most recent 30 completed runs at the selected duration.
 Humans are absent from these model charts because their response time is not recorded.
 

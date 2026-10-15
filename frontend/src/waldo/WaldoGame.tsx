@@ -51,7 +51,7 @@ export default function WaldoGame() {
     </main>
     <footer className="er-footer"><span>Eraneos AI playground</span><button type="button" className="waldo-credit-button" onClick={() => setRules(true)}>Rules & credits</button></footer>
     <Modal opened={rules} onClose={() => setRules(false)} title="One match. Two rounds." centered size="lg" className="waldo-modal">
-      <div className="waldo-rules"><p>Choose any model for a single round. You can switch models at any time; an unfinished run remains in the history without a rank. Presentation mode guides you through an LLM round followed automatically by Jev, using the same images and time limit.</p>
+      <div className="waldo-rules"><p>Choose any model for a single round. You can switch models at any time; an unfinished run remains in the history without a rank. Presentation mode guides you through an LLM round followed by Jev, using the same images and time limit. Each round waits for your Start click.</p>
         <p>Click Waldo. Hit +1, miss −1. AI gets one attempt per image; a miss immediately changes the picture. A correct box stays visible for 0.45 seconds. Your image changes after a hit, a skip, or three misses.</p>
         <p>Your click counts inside the body plus a 20% margin. Model boxes receive 30% padding for the head check: they must cover at least 50% of the head, and 55% of the raw box must fall inside the body with its 20% margin. Confidence does not change points.</p>
         <p>The server owns the clock and scores. Late answers earn no points. Stopped or failed runs remain in the leaderboard without a rank. Costs marked * may exclude pending or failed requests.</p>

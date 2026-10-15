@@ -24,7 +24,7 @@ export default function Leaderboard({ runs, duration, comparisonId, onlyComparis
         <td><div className="leaderboard-accuracy"><span><i style={{ width: `${hits / Math.max(1, hits + misses) * 100}%` }} /></span>{hits + misses ? `${Math.round(hits / (hits + misses) * 100)}%` : '—'}</div></td>
         <td>{human || run.average_ms == null ? '—' : `${Math.round(run.average_ms).toLocaleString('en-US')} ms`}</td>
         <td title={human ? 'No API cost for human play.' : run.cost_basis === 'gateway' ? 'Gateway-reported cost, including cache charges.' : 'Estimate from reported tokens; caching and tariffs can differ.'}>
-          {human ? '$0.00' : dollars(run.cost_usd)}{!human && run.cost_partial ? '*' : ''}<small>{human ? 'no API calls' : run.cost_basis === 'gateway' ? 'gateway' : run.cost_basis === 'estimate' ? '' : run.cost_basis === 'mixed' ? '' : 'unavailable'}</small>
+          {human ? '$0.00' : dollars(run.cost_usd)}{!human && run.cost_partial ? '*' : ''}
         </td>
         <td><time dateTime={run.created_at}>{new Date(run.created_at).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}</time>{run.status !== 'completed' && <small className="run-status">{statusLabels[run.status]}</small>}</td>
       </tr>)}</tbody>

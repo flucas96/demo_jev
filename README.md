@@ -89,7 +89,8 @@ stays available during play; changing it ends the current run. Afterward, choose
 model without repeating a Jev round.
 
 **Presentation** (`/waldo/presentation`) is a dark, guided game. Play against the selected
-LLM, then scroll automatically into Jev’s round after a brief transition and countdown.
+LLM, then scroll automatically to Jev’s ready screen. Entering the arena does not start
+the timer: press **Start round 1** or **Start round 2** to begin each three-second countdown.
 Live scores, speed, calls, and cost stay visible during play. The leaderboard and charts
 appear at the end. Both rounds use the same image order, time limit, and scoring geometry. Humans click Waldo; the models
 return a box. Each AI gets one attempt per image: a miss costs one point and immediately
@@ -103,8 +104,11 @@ the history. Override the location with `WALDO_HISTORY_PATH` if needed. Stopped,
 and disconnected rounds remain visible without a rank. Every human and model gets a
 separate row, ranked by points and accuracy within the same duration. Two interactive
 charts below the table plot **points vs average response time** and **points vs cost**,
-using up to 30 completed model runs. Hover or focus a logo to inspect its measurements.
+with **points on the vertical axis** and **response time or cost on the horizontal axis**,
+using up to 30 completed model runs. Higher and further left is better.
+Hover or focus a logo to inspect its measurements.
 Human response time is not measured, so humans appear in the table but not the model charts.
+Cost cells show the amount alone; billing details are available on hover.
 
 Gateway costs use its reported per-request cost, including caching. If unavailable, the
 app estimates from reported input/output tokens and the supplied catalogue prices dated
