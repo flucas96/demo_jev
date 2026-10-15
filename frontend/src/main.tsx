@@ -7,6 +7,8 @@ import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/500.css';
 import './styles.css';
 const App = React.lazy(() => import('./App'));
+const WaldoPresentation = React.lazy(() => import('./waldo/WaldoPresentation'));
+const presentationPage = /^\/waldo\/presentation\/?$/.test(location.pathname);
 const WaldoGame = React.lazy(() => import('./waldo/WaldoGame'));
 const WaldoReferences = React.lazy(() => import('./waldo/References'));
 
@@ -29,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <MantineProvider theme={theme} forceColorScheme="light">
       <React.Suspense fallback={<div role="status" style={{ padding: 32 }}>Loading…</div>}>
-        {referencePage ? <WaldoReferences /> : waldoPage ? <WaldoGame />  : <App />}
+        {presentationPage ? <WaldoPresentation /> : referencePage ? <WaldoReferences /> : waldoPage ? <WaldoGame />  : <App />}
       </React.Suspense>
     </MantineProvider>
   </React.StrictMode>,

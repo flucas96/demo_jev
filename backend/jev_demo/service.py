@@ -1,5 +1,6 @@
 """Small async TypeSafe adapter with strict response validation and safe errors."""
 
+from pathlib import Path
 from time import perf_counter
 
 import httpx
@@ -19,6 +20,9 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
     typesafe_api_key: SecretStr = SecretStr("")
     typesafe_model: str = "jev-latest"
+    ai_gateway_api_key: SecretStr = SecretStr("")
+    ai_gateway_base_url: str = "https://ai-gateway.eraneos.com/v1"
+    waldo_history_path: Path | None = Path(".local/waldo.sqlite3")
 
 
 class JevError(Exception):

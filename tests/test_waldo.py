@@ -1,5 +1,6 @@
 """Exercise fair scoring, timer boundaries, reference isolation, and real-shaped image transport."""
 
+import asyncio
 import base64
 import json
 from io import BytesIO
@@ -43,7 +44,7 @@ LEGACY = {
 
 def settings() -> Settings:
     """Keep transport tests independent of local provider credentials."""
-    return Settings(typesafe_api_key=SecretStr("waldo-test-secret"))
+    return Settings(typesafe_api_key=SecretStr("waldo-test-secret"), waldo_history_path=None)
 
 
 def response(box: Box | None = None, model: str = MODEL) -> BoxResponse:
@@ -168,17 +169,21 @@ def test_invalid_clicks_are_rejected(point: dict[str, float]) -> None:
         Point.model_validate(point)
 
 
-def test_three_wrong_answers_advance_after_equal_feedback_delay() -> None:
-    """Both competitors lose a point per miss and leave an unsolved scene after three."""
+def test_human_retains_three_attempts_but_ai_leaves_immediately_after_a_miss() -> None:
+    """A model miss advances immediately, while human clicks retain their three attempts."""
     match = Match(60, "sprint", 42, 100)
     wrong = Box(left=0, right=1, top=0, bottom=1)
     for attempt in range(3):
         now = 101 + attempt
-        for who in ("human", "jev"):
-            assert match.submit(who, 0, wrong, now)
-            assert match.players[who].score == -(attempt + 1)
+        assert match.submit("human", 0, wrong, now)
+        assert match.submit("jev", attempt, wrong, now)
+        assert match.players["human"].score == match.players["jev"].score == -(attempt + 1)
+        match.tick(now)
+        assert match.players["jev"].round == attempt + 1
+        assert match.players["human"].round == 0
         match.tick(now + FEEDBACK_SECONDS + 0.01)
-    assert match.players["human"].round == match.players["jev"].round == 1
+    assert match.players["human"].round == 1
+    assert match.players["jev"].round == 3
 
 
 def test_deadline_rejects_late_points_but_accounts_for_returned_tokens() -> None:
@@ -257,12 +262,13 @@ def test_websocket_sends_live_images_and_stop_does_not_start_another_call() -> N
     """The live path pins the new model and header while keeping credentials server-side."""
     requests: list[BoxRequest] = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
-        """Inspect the outbound contract and return a known valid provider response."""
+    async def handler(request: httpx.Request) -> httpx.Response:
+        """Inspect the outbound contract while a pending inference awaits cancellation."""
         assert request.headers["TypeSafe-Danger-Zone-Images"] == "true"
         assert request.headers["Authorization"] == "Bearer waldo-test-secret"
         payload = BoxRequest.model_validate_json(request.content)
         requests.append(payload)
+        await asyncio.Event().wait()
         return httpx.Response(200, json=response().model_dump(mode="json"))
 
     with (

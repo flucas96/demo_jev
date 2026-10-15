@@ -1,6 +1,7 @@
-# Spot on: human vs Jev
+# Spot on: human vs LLM, then Jev
 
-Open `/waldo`, or `/waldo/referenzen` to review and correct scoring regions.
+Open `/waldo` for the playground, `/waldo/presentation` for the guided game, or
+`/waldo/referenzen` to review and correct scoring regions. All game UI is in English.
 The game and demo hub use Eraneos' public visual identity: Mona Sans, Eraneos Display,
 warm paper, dark ink, and orange accents.
 
@@ -8,13 +9,54 @@ warm paper, dark ink, and orange accents.
 
 Click Waldo on the human board. A hit earns +1 and a miss −1; three misses or an
 explicit skip advance the image. Arrow keys position a keyboard cursor; Enter submits it.
-Jev locates Waldo with the `box` primitive. Both players see the same unmarked image
+In the playground, select any gateway vision model (default Claude Opus 5.5) or Jev for
+a standalone round. Changing the model ends the current round and keeps its partial record.
+The result screen offers **Choose another model**.
+
+Presentation mode uses a dark arcade layout: LLM first, then an automatic scroll transition
+and a three-second countdown into Jev. Live metrics stay visible; standings and charts are
+revealed only after both rounds. Reduced-motion preferences disable animated scrolling. Jev locates Waldo with the `box` primitive; gateway models return JSON coordinates.
+Both AIs get one attempt per image, immediately moving on after a miss or malformed box.
+Both players see the same unmarked image
 bytes in the same shuffled order, advancing independently. The default duel lasts
 60 seconds, configurable from 15 to 180 seconds. The server rejects late answers.
 
-The display shows scores, accuracy, calls, API response time, and estimated cost.
+Both rounds share a server-generated seed, duration, and reference fingerprint. Editing
+references between rounds requires a new comparison. Jev can also be played alone.
+The display shows scores, accuracy, calls, API response time, and cost.
 Accuracy is hits / (hits + misses); skips count as misses, transport errors do not.
-The 450 ms feedback pause is excluded from API response time.
+Correct AI answers and human attempts have a 450 ms feedback pause, excluded from API
+response time. Wrong AI answers advance without that pause.
+
+## Gateway and leaderboard
+
+Configure `AI_GATEWAY_API_KEY` and optionally `AI_GATEWAY_BASE_URL` in the ignored `.env`.
+The default endpoint is `https://ai-gateway.eraneos.com/v1`. The server checks `/models`
+and shows accessible models with known vision capabilities. Each request uses
+`/chat/completions`, the exact JPEG as a data URI, and a short instruction to return
+left/top/right/bottom normalized to 0–1. The output limit is 256 tokens. No position hints,
+reference boxes, previous attempts, or generated confidence claims are supplied.
+
+Gateway cost comes from `x-litellm-response-cost`, which includes cache charges. Without
+that header, input/output list prices from the supplied 2026-10-15 catalogue give an
+estimate. The visible label is simply Cost; tooltips explain the calculation. Unknown usage is not shown as zero cost. Errors and pending calls are marked as
+potentially unbilled in the displayed subtotal; cancelling a request does not guarantee
+the provider stops billing. Jev still uses the input-token estimate described below.
+
+SQLite stores server-scored runs in `.local/waldo.sqlite3`, ignored by Git. Set
+`WALDO_HISTORY_PATH` to move it. Each run is saved once; only completed rounds advance
+the comparison. Stopped, disconnected, and failed runs remain visible without rank.
+The leaderboard shows the latest 500 records, filtered by equal duration and ranked by
+points and accuracy, with separate human and model rows. Ties retain chronological order.
+It stores no API keys or image payloads. Two scatter charts show points on the x-axis and
+average response time or cost on the y-axis. Each provider logo represents one completed
+model run; inspect it by hover or keyboard focus. Unknown metrics are omitted, and partial
+costs are marked. Charts use the most recent 30 completed runs at the selected duration.
+Humans are absent from these model charts because their response time is not recorded.
+
+This interactive comparison has limitations: the human can recognize images in round two,
+different comparisons use different shuffled orders, and gateway caching affects costs
+and latency. The history is local demo data, not an authenticated competitive service.
 
 ## Sixty images
 
@@ -22,6 +64,8 @@ The deck mixes twelve generated illustrations with 48 composited variants. The l
 place one transparent Waldo sprite into reviewed ground positions on eleven generated
 backgrounds. Scale and placement match each scene's perspective; seeded jitter and
 mirroring vary the figure. Easier and crowded scenes are mixed, with no difficulty selector.
+A seeded scheduler alternates backgrounds, so consecutive scenes never share the same
+background, even across a deck wrap. Both competitors receive the identical schedule.
 All packaged images are 1568×882 baseline JPEGs. Each has exactly one target.
 
 Sources, sprite, prompts, and placement configuration are in
@@ -58,7 +102,7 @@ No scans from the original puzzle books are included in the public repository.
 ## Tolerant scoring and corrections
 
 A human click anywhere inside the visible-body box expanded by 20% on each side counts.
-Jev's raw answer is expanded by 30% of its width/height on each side, clipped to the image.
+Each model's raw answer is expanded by 30% of its width/height on each side, clipped to the image.
 That expanded box must cover at least 50% of the head, while at least 55% of the raw box
 must lie inside the body with its 20% tolerance. This accepts head-only and loose body
 answers while rejecting whole-scene guesses. Confidence does not change the score.
@@ -83,3 +127,10 @@ are not a general accuracy or speed benchmark.
 - [TypeSafe Box](https://docs.typesafe.ai/primitives/box),
   [image contract](https://docs.typesafe.ai/images), and
   [model pricing](https://docs.typesafe.ai/models), checked 2026-10-15.
+
+## Model identity assets
+
+TypeSafe’s icon is from its [public website](https://typesafe.ai/). Claude, Gemini, and
+OpenAI icons are from [Lobe Icons](https://github.com/lobehub/lobe-icons), bundled locally
+with its MIT license. They identify providers, not endorsements. Files live in
+`frontend/public/brand/models/`. The hero uses the existing transparent generated sprite.

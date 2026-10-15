@@ -8,7 +8,7 @@ workbench. All model results are live; nothing silently substitutes canned answe
 
 You need Git, [uv](https://docs.astral.sh/uv/), [Node.js](https://nodejs.org/) 22.12+
 (or a newer supported LTS, including npm), and a TypeSafe API key with access to Jev.
-Python 3.14 is installed automatically by uv if needed. No database, Docker, or Jira
+Python 3.14 is installed automatically by uv if needed. No database server, Docker, or Jira
 account is required. The 60 Waldo images are included; you do not need to generate them.
 
 ### Download and install
@@ -27,9 +27,12 @@ Open `.env` in your editor and replace the placeholder with your own key:
 ```dotenv
 TYPESAFE_API_KEY=your-typesafe-api-key
 TYPESAFE_MODEL=jev-latest
+AI_GATEWAY_API_KEY=your-eraneos-gateway-key
+AI_GATEWAY_BASE_URL=https://ai-gateway.eraneos.com/v1
 ```
 
-The key stays on the Python server. `.env` is ignored by Git and is never included in
+The gateway key is optional for Jev-only demos. Add it for the paired Waldo comparison.
+Keys stay on the Python server. `.env` is ignored by Git and is never included in
 the browser bundle. Waldo pins `jev-1.14.0` for image and box support; the text demos
 use `TYPESAFE_MODEL`. Starting an AI game or evaluating tickets makes paid API calls.
 
@@ -48,7 +51,8 @@ press **Ctrl+C** to stop the server.
 | Demo | Address |
 | --- | --- |
 | Demo hub | [localhost:8000](http://127.0.0.1:8000/) |
-| Waldo: human vs Jev | [localhost:8000/waldo](http://127.0.0.1:8000/waldo) |
+| Waldo playground: choose any model | [localhost:8000/waldo](http://127.0.0.1:8000/waldo) |
+| Waldo presentation: LLM → Jev | [localhost:8000/waldo/presentation](http://127.0.0.1:8000/waldo/presentation) |
 | Jira triage | [localhost:8000/#queue](http://127.0.0.1:8000/#queue) |
 | Lantern Run | [localhost:8000/#runner](http://127.0.0.1:8000/#runner) |
 | Snake | [localhost:8000/#snake](http://127.0.0.1:8000/#snake) |
@@ -76,12 +80,41 @@ on port 5173 and the Python API on port 8000. Ctrl+C stops both.
 - **Port already in use:** stop the previous demo process before starting another one.
 - **Changes do not appear:** rebuild and restart, or use development mode.
 
-## Spot on: human vs Jev
+## Spot on: human vs LLM, then Jev
 
 The Eraneos demo hub links to [the Waldo game](http://127.0.0.1:8000/waldo).
-Humans click Waldo in generated search scenes; Jev uses image input and the `box`
-primitive on `jev-1.14.0`. Live metrics show response time, calls, accuracy, and estimated cost.
-The default match lasts 60 seconds, configurable from 15 to 180 seconds.
+Select a gateway vision model, with **Claude Opus 5.5** selected by default when available.
+**Playground** (`/waldo`) runs one round against any model, including Jev. The selector
+stays available during play; changing it ends the current run. Afterward, choose another
+model without repeating a Jev round.
+
+**Presentation** (`/waldo/presentation`) is a dark, guided game. Play against the selected
+LLM, then scroll automatically into Jev’s round after a brief transition and countdown.
+Live scores, speed, calls, and cost stay visible during play. The leaderboard and charts
+appear at the end. Both rounds use the same image order, time limit, and scoring geometry. Humans click Waldo; the models
+return a box. Each AI gets one attempt per image: a miss costs one point and immediately
+advances the image. Every next image has a different background, including when the deck loops.
+All game screens are in English. Provider logos identify models throughout the interface.
+
+The default round lasts 60 seconds, configurable from 15 to 180 seconds. The leaderboard
+records scores, accuracy, response time, and cost locally in `.local/waldo.sqlite3`
+(ignored by Git). No database service is needed; retain that file when updating to keep
+the history. Override the location with `WALDO_HISTORY_PATH` if needed. Stopped, failed,
+and disconnected rounds remain visible without a rank. Every human and model gets a
+separate row, ranked by points and accuracy within the same duration. Two interactive
+charts below the table plot **points vs average response time** and **points vs cost**,
+using up to 30 completed model runs. Hover or focus a logo to inspect its measurements.
+Human response time is not measured, so humans appear in the table but not the model charts.
+
+Gateway costs use its reported per-request cost, including caching. If unavailable, the
+app estimates from reported input/output tokens and the supplied catalogue prices dated
+2026-10-15. Jev uses reported input tokens at $0.042/M with free output. Pending or failed
+requests may leave totals incomplete, marked with an asterisk. Model access is checked
+against the gateway's live catalogue; only known vision models appear. See the
+[gateway setup guide](https://ai-gateway.eraneos.com/portal/how-to) for key access.
+
+The second human round benefits from seeing the images again, and cache effects can change
+cost and latency. This is a game-based comparison, not a general model performance ranking.
 Sixty generated 1568×882 images mix twelve original compositions with 48 seeded placement
 variants across eleven backgrounds. Clear and crowded scenes are shuffled together for each match.
 The target is inserted into reviewed ground positions, and its reference boxes follow the same transform.

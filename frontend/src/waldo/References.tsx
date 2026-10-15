@@ -55,23 +55,23 @@ function Editor({ original, padding, onSaved }: { original: ReferencePuzzle; pad
   async function save() {
     const b = draft.reference, h = draft.head;
     if (h.left < b.left || h.right > b.right || h.top < b.top || h.bottom > b.bottom) {
-      setError('Die grüne Kopfbox muss innerhalb der blauen Körperbox liegen. Wenn nur der Kopf sichtbar ist, können beide gleich groß sein.'); return;
+      setError('The green head box must be inside the blue body box. If only the head is visible, both can have the same size.'); return;
     }
     setSaving(true); setError(null);
     try {
       const result = await api<ReferencePuzzle>(`/api/waldo/references/${original.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ reference: b, head: h }) });
       setDraft(result); onSaved(result); setSaved(true);
-    } catch (failure) { setError(failure instanceof Error ? failure.message : 'Speichern fehlgeschlagen.'); }
+    } catch (failure) { setError(failure instanceof Error ? failure.message : 'Could not save.'); }
     finally { setSaving(false); }
   }
   return <div className="reference-editor">
-    <div className="reference-tools"><SegmentedControl aria-label="Box bearbeiten" value={part} onChange={value => setPart(value as 'head' | 'reference')} disabled={saving} data={[{ value: 'head', label: 'Kopf' }, { value: 'reference', label: 'Sichtbarer Körper' }]} /><span><Pencil size={13} />Neue Box im Bild ziehen</span><Checkbox label="Toleranz zeigen" checked={tolerance} onChange={event => setTolerance(event.currentTarget.checked)} size="xs" /></div>
-    <div className={`reference-picture editable editing-${part}`} style={{ aspectRatio: `${draft.width}/${draft.height}`, width: `min(100%, calc((100dvh - 285px) * ${draft.width / draft.height}))`, margin: '0 auto' }} onPointerDown={down} onPointerMove={event => { const box = draw(event); if (box) update(box); }} onPointerUp={up} onPointerCancel={() => { start.current = null; setDraft(beforeDrag.current); }} aria-label={`${part === 'head' ? 'Kopfbox' : 'Körperbox'} neu zeichnen`}>
-      <img src={draft.url} alt="Waldo-Szene mit bearbeitbaren Referenzboxen" draggable={false} /><Outlines puzzle={draft} tolerance={tolerance} />
+    <div className="reference-tools"><SegmentedControl aria-label="Edit box" value={part} onChange={value => setPart(value as 'head' | 'reference')} disabled={saving} data={[{ value: 'head', label: 'Head' }, { value: 'reference', label: 'Visible body' }]} /><span><Pencil size={13} />Draw a new box</span><Checkbox label="Show tolerance" checked={tolerance} onChange={event => setTolerance(event.currentTarget.checked)} size="xs" /></div>
+    <div className={`reference-picture editable editing-${part}`} style={{ aspectRatio: `${draft.width}/${draft.height}`, width: `min(100%, calc((100dvh - 285px) * ${draft.width / draft.height}))`, margin: '0 auto' }} onPointerDown={down} onPointerMove={event => { const box = draw(event); if (box) update(box); }} onPointerUp={up} onPointerCancel={() => { start.current = null; setDraft(beforeDrag.current); }} aria-label={`${part === 'head' ? 'Head box' : 'Body box'} redraw`}>
+      <img src={draft.url} alt="Waldo scene with editable reference boxes" draggable={false} /><Outlines puzzle={draft} tolerance={tolerance} />
     </div>
     {error && <Alert color="red" role="alert">{error}</Alert>}
-    <div className="reference-savebar"><span>{saved ? <><Check size={15} />Gespeichert · gilt ab dem nächsten Duell</> : dirty ? 'Ungespeicherte Änderungen' : 'Gespeicherte Referenz'}</span><button className="reference-reset" type="button" onClick={() => { setDraft(original); setError(null); setSaved(false); }} disabled={saving || !dirty}><RotateCcw size={14} />Zurücksetzen</button><button type="button" className="er-button" onClick={() => void save()} disabled={saving || !dirty}><Save size={14} />{saving ? 'Speichert …' : 'Korrektur speichern'}</button></div>
-    <p className="reference-editor-note">Korrekturen bleiben nach einem Neustart erhalten und gelten ab dem nächsten Duell. Bilder und Jev-Anfragen bleiben unverändert.</p>
+    <div className="reference-savebar"><span>{saved ? <><Check size={15} />Saved · applies to the next match</> : dirty ? 'Unsaved changes' : 'Saved reference'}</span><button className="reference-reset" type="button" onClick={() => { setDraft(original); setError(null); setSaved(false); }} disabled={saving || !dirty}><RotateCcw size={14} />Reset</button><button type="button" className="er-button" onClick={() => void save()} disabled={saving || !dirty}><Save size={14} />{saving ? 'Saving…' : 'Save correction'}</button></div>
+    <p className="reference-editor-note">Corrections persist across restarts and apply to the next match. Images and model requests stay unchanged.</p>
   </div>;
 }
 
@@ -84,20 +84,20 @@ export default function References() {
   useEffect(() => {
     const controller = new AbortController(); setError(null); setCatalog(null);
     void api<ReferenceCatalog>('/api/waldo/references', { signal: controller.signal }).then(setCatalog).catch((failure: unknown) => {
-      if (!controller.signal.aborted) setError(failure instanceof Error ? failure.message : 'Referenzen konnten nicht geladen werden.');
+      if (!controller.signal.aborted) setError(failure instanceof Error ? failure.message : 'Could not load references.');
     });
     return () => controller.abort();
   }, []);
   const picture = catalog?.images.find(item => item.id === selected);
   return <div className="er-page references-page"><BrandHeader game /><main className="reference-main">
-    <div className="reference-intro"><div><a href="/waldo" className="reference-back"><ArrowLeft size={14} />Zum Duell</a><h1>Referenzboxen<span>.</span></h1><p>Prüfen. Korrigieren. Fair spielen.</p></div></div>
-    <div className="reference-legend"><span><i className="head" />Kopf</span><span><i className="body" />Sichtbarer Körper</span><span><i className="tolerance" />Toleranz · 20 % Rand</span><Checkbox label="Toleranz zeigen" checked={tolerance} onChange={event => setTolerance(event.currentTarget.checked)} size="xs" /></div>
-    <p className="reference-rule">Dein Klick zählt im orangefarbenen Bereich. Jevs Antwortbox erhält <b>{Math.round((catalog?.answer_padding ?? .30) * 100)} % Rand</b> zum Kopf-Abgleich und umfasst damit mindestens <b>{Math.round((catalog?.head_coverage ?? .5) * 100)} % des Kopfes</b>. Mindestens <b>{Math.round((catalog?.box_precision ?? .55) * 100)} % seiner ursprünglichen Box</b> liegen im orangefarbenen Bereich.</p>
+    <div className="reference-intro"><div><a href="/waldo" className="reference-back"><ArrowLeft size={14} />Back to game</a><h1>Reference boxes<span>.</span></h1><p>Review. Correct. Play fair.</p></div></div>
+    <div className="reference-legend"><span><i className="head" />Head</span><span><i className="body" />Visible body</span><span><i className="tolerance" />Tolerance · 20% margin</span><Checkbox label="Show tolerance" checked={tolerance} onChange={event => setTolerance(event.currentTarget.checked)} size="xs" /></div>
+    <p className="reference-rule">Your click counts inside the orange area. Each model box gets <b>{Math.round((catalog?.answer_padding ?? .30) * 100)}% padding</b> for the head check and must cover at least <b>{Math.round((catalog?.head_coverage ?? .5) * 100)}% of the head</b>. At least <b>{Math.round((catalog?.box_precision ?? .55) * 100)}% of its original box</b> must lie inside the orange area.</p>
     {error && <Alert color="red">{error}</Alert>}
-    {!catalog && !error && <p role="status">Referenzen werden geladen …</p>}
-    <div className="reference-grid">{catalog?.images.map(item => <button type="button" className="reference-card" key={item.id} onClick={() => setSelected(item.id)} aria-label={`${item.title} prüfen und korrigieren`}><div className="reference-thumbnail"><div className="reference-picture" style={{ aspectRatio: `${item.width}/${item.height}` }}><img src={item.url} alt={item.title} loading="lazy" /><Outlines puzzle={item} tolerance={tolerance} /></div></div><div className="reference-card-footer"><strong>{item.title}</strong><span>Prüfen & korrigieren<Expand size={14} /></span></div></button>)}</div>
-  </main><footer className="er-footer"><span>Eraneos AI playground</span><a href="/waldo">Zurück zum Spiel ↗</a></footer>
-    <Modal opened={!!picture} onClose={() => setSelected(null)} title={picture ? `${picture.title} · Referenz bearbeiten` : 'Referenz bearbeiten'} size="min(1100px, 96vw)" centered className="reference-modal" closeOnClickOutside={false}>
+    {!catalog && !error && <p role="status">Loading references…</p>}
+    <div className="reference-grid">{catalog?.images.map(item => <button type="button" className="reference-card" key={item.id} onClick={() => setSelected(item.id)} aria-label={`${item.title} review and correct`}><div className="reference-thumbnail"><div className="reference-picture" style={{ aspectRatio: `${item.width}/${item.height}` }}><img src={item.url} alt={item.title} loading="lazy" /><Outlines puzzle={item} tolerance={tolerance} /></div></div><div className="reference-card-footer"><strong>{item.title}</strong><span>Review & correct<Expand size={14} /></span></div></button>)}</div>
+  </main><footer className="er-footer"><span>Eraneos AI playground</span><a href="/waldo">Back to game ↗</a></footer>
+    <Modal opened={!!picture} onClose={() => setSelected(null)} title={picture ? `${picture.title} · Edit reference` : 'Edit reference'} size="min(1100px, 96vw)" centered className="reference-modal" closeOnClickOutside={false}>
       {picture && catalog && <Editor key={picture.id} original={picture} padding={catalog.padding} onSaved={updated => setCatalog(previous => previous ? { ...previous, images: previous.images.map(item => item.id === updated.id ? updated : item) } : previous)} />}
     </Modal>
   </div>;

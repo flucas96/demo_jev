@@ -2,7 +2,9 @@
 
 import asyncio
 import base64
+import hashlib
 import os
+from collections import defaultdict
 from contextlib import suppress
 from dataclasses import dataclass, field
 from functools import lru_cache
@@ -17,10 +19,13 @@ import httpx
 from fastapi import WebSocket, WebSocketDisconnect
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, model_validator
 
+from . import waldo_gateway
 from .models import Probability, Usage
 from .pricing import estimate_cost_usd
 from .service import JevError, Settings, post_evaluation
 from .waldo_annotations import Annotation, Crop, denormalize, normalize
+from .waldo_geometry import Box, Point, intersection, overlap
+from .waldo_history import History, Run, timestamp
 
 MODEL = "jev-1.14.0"
 ASSETS = Path(__file__).parent / "assets" / "waldo"
@@ -32,60 +37,6 @@ FEEDBACK_SECONDS = 0.45
 MAX_MISSES = 3
 type Mode = Literal["sprint", "classic"]
 type PlayerId = Literal["human", "jev"]
-
-
-class Point(BaseModel):
-    """A normalized human click within the displayed image."""
-
-    model_config = ConfigDict(extra="forbid")
-    x: Probability
-    y: Probability
-
-
-class Box(BaseModel):
-    """Normalized image edges, independent of display scale and drag direction."""
-
-    model_config = ConfigDict(extra="forbid")
-    left: Probability
-    right: Probability
-    top: Probability
-    bottom: Probability
-
-    @model_validator(mode="after")
-    def ordered_edges(self) -> Self:
-        """Reject empty, reversed, or nonfinite rectangles before scoring."""
-        if self.left >= self.right or self.top >= self.bottom:
-            raise ValueError("A box must have positive width and height.")
-        return self
-
-    @property
-    def area(self) -> float:
-        """Return the fraction of image area covered by this rectangle."""
-        return (self.right - self.left) * (self.bottom - self.top)
-
-    def padded(self, fraction: float) -> Box:
-        """Expand each edge relative to the target size, clipped to the actual image."""
-        dx = (self.right - self.left) * fraction
-        dy = (self.bottom - self.top) * fraction
-        return Box(
-            left=max(0, self.left - dx),
-            right=min(1, self.right + dx),
-            top=max(0, self.top - dy),
-            bottom=min(1, self.bottom + dy),
-        )
-
-
-def intersection(candidate: Box, reference: Box) -> float:
-    """Return the shared normalized area of two rectangles."""
-    return max(
-        0.0, min(candidate.right, reference.right) - max(candidate.left, reference.left)
-    ) * max(0.0, min(candidate.bottom, reference.bottom) - max(candidate.top, reference.top))
-
-
-def overlap(candidate: Box, reference: Box) -> float:
-    """Report body IoU for inspection; head-only hits do not need to match body proportions."""
-    shared = intersection(candidate, reference)
-    return shared / (candidate.area + reference.area - shared)
 
 
 class Puzzle(BaseModel):
@@ -102,13 +53,18 @@ class Puzzle(BaseModel):
     generated: bool = False
     title: str = ""
 
+    @property
+    def background(self) -> str:
+        """Group original scenes and placed-target variants by their shared scenery."""
+        return self.title.split(" · ", 1)[0] or self.id
+
     def public(self) -> dict[str, object]:
         """Expose only display metadata, without the solution or source annotation."""
         return {
             "id": self.id,
             "width": self.width,
             "height": self.height,
-            "title": self.title or f"Bild {self.id.split('-')[1]}",
+            "title": english_title(self.title) if self.title else "Search scene",
             "url": f"/api/waldo/images/{self.id}?v=2",
         }
 
@@ -137,6 +93,57 @@ class Puzzle(BaseModel):
 
 
 ANNOTATIONS = ASSETS / "reviewed-annotations.json"
+
+
+def english_title(title: str) -> str:
+    """Translate scene labels without changing stable asset IDs or annotations."""
+    labels = {
+        "Am Bahnhof": "Train station",
+        "Auf dem Markt": "Market square",
+        "Im Stadtpark": "City park",
+        "Im Museum": "Museum",
+        "Am Hafen": "Harbor",
+        "Beim Straßenfest": "Street festival",
+        "Am belebten Strand": "Busy beach",
+        "Im botanischen Garten": "Botanical garden",
+        "Am Flughafen": "Airport",
+        "Auf dem Rathausplatz": "Town square",
+        "Auf dem Jahrmarkt": "Funfair",
+        "Auf der Buchmesse": "Book fair",
+    }
+    base, separator, variant = title.partition(" · ")
+    return labels.get(base, base) + separator + variant
+
+
+def shuffled_course(puzzles: list[Puzzle], seed: int) -> list[Puzzle]:
+    """Shuffle deterministically while changing backgrounds on every turn, including wraparound."""
+    random = Random(seed)
+    groups: dict[str, list[Puzzle]] = defaultdict(list)
+    for puzzle in puzzles:
+        groups[puzzle.background].append(puzzle.model_copy(deep=True))
+    for group in groups.values():
+        random.shuffle(group)
+    course: list[Puzzle] = []
+    previous = ""
+    while groups:
+        eligible = [key for key in groups if key != previous]
+        if not eligible:
+            raise ValueError("The deck needs more distinct backgrounds to avoid repetition.")
+        key = max(eligible, key=lambda key: (len(groups[key]), random.random()))
+        course.append(groups[key].pop())
+        previous = key
+        if not groups[key]:
+            del groups[key]
+    if len(course) > 2 and course[-1].background == course[0].background:
+        last = course[-1].background
+        index = next(
+            i
+            for i in range(1, len(course) - 2)
+            if last not in (course[i - 1].background, course[i + 1].background)
+            and course[i].background not in (course[-2].background, course[0].background)
+        )
+        course[index], course[-1] = course[-1], course[index]
+    return course
 
 
 def apply_annotation(puzzle: Puzzle, annotation: Annotation) -> None:
@@ -168,7 +175,7 @@ class ReferenceCorrection(BaseModel):
     def contained_head(self) -> Self:
         """Keep contradictory annotations from silently changing the scoring rule."""
         if intersection(self.head, self.reference) < self.head.area * (1 - 1e-8):
-            raise ValueError("Die Kopfbox muss innerhalb der Körperbox liegen.")
+            raise ValueError("The head box must be inside the body box.")
         return self
 
 
@@ -212,6 +219,12 @@ BY_ID = {puzzle.id: puzzle for puzzle in PUZZLES}
 def playable_puzzles(mode: Mode) -> list[Puzzle]:
     """Use the generated mixture; legacy mode URLs cannot reintroduce archived originals."""
     return [puzzle for puzzle in PUZZLES if puzzle.generated]
+
+
+def deck_fingerprint() -> str:
+    """Identify the image identities and scoring references used by both comparison rounds."""
+    data = TypeAdapter(list[Puzzle]).dump_json(playable_puzzles("sprint"))
+    return hashlib.sha256(b"waldo-v3-background-rotation" + data).hexdigest()[:16]
 
 
 @lru_cache(maxsize=48)
@@ -293,7 +306,25 @@ async def infer(
     try:
         return BoxResponse.model_validate_json(content), elapsed
     except ValueError as exc:
-        raise JevError(502, "Jev hat keine gültige Box geliefert. Bitte erneut versuchen.") from exc
+        raise JevError(502, "Jev returned an invalid box. Please try again.") from exc
+
+
+async def infer_model(
+    client: httpx.AsyncClient, settings: Settings, puzzle: Puzzle, model: str
+) -> waldo_gateway.Localization:
+    """Normalize provider telemetry while keeping Jev's native confidence distinct."""
+    if model != MODEL:
+        return await waldo_gateway.infer(client, settings, model, image_bytes(puzzle.id))
+    response, elapsed = await infer(client, settings, puzzle)
+    return waldo_gateway.Localization(
+        response.model,
+        response.answers.waldo.box,
+        response.answers.waldo.confidence,
+        response.usage,
+        elapsed,
+        estimate_cost_usd(response.model, response.usage.input_tokens),
+        "estimate",
+    )
 
 
 class Move(BaseModel):
@@ -332,6 +363,14 @@ class Match:
         default_factory=lambda: {"human": Player(), "jev": Player()}
     )
     course: list[Puzzle] = field(init=False)
+    run_id: str = field(default_factory=lambda: str(uuid4()))
+    comparison_id: str | None = None
+    stage: int = 1
+    requested_model: str = MODEL
+    label: str = "Jev"
+    created_at: str = field(default_factory=timestamp)
+    deck: str = field(default_factory=deck_fingerprint)
+    cost_sources: set[str] = field(default_factory=set)
     calls: int = 0
     completed: int = 0
     failures: int = 0
@@ -347,8 +386,7 @@ class Match:
 
     def __post_init__(self) -> None:
         """Give both players the same reproducibly shuffled course."""
-        self.course = playable_puzzles(self.mode)
-        Random(self.seed).shuffle(self.course)
+        self.course = shuffled_course(playable_puzzles(self.mode), self.seed)
 
     def puzzle(self, player: PlayerId) -> Puzzle:
         """Repeat the finite deck so a fast player never runs out before time expires."""
@@ -380,6 +418,7 @@ class Match:
         elapsed_ms: float | None = None,
         *,
         point: Point | None = None,
+        invalid_answer: bool = False,
     ) -> bool:
         """Score a human click or model box with shared cooldown and advancement rules."""
         player = self.players[who]
@@ -397,13 +436,13 @@ class Match:
             if point is not None
             else box is not None and self.puzzle(who).accepts(box)
         )
-        skipped = box is None and point is None
+        skipped = box is None and point is None and not invalid_answer
         player.score += 1 if correct else -1
         player.hits += int(correct)
         player.misses += int(not correct)
         player.streak = 0 if correct else player.streak + 1
-        player.advance = correct or skipped or player.streak >= MAX_MISSES
-        player.ready_at = now + FEEDBACK_SECONDS
+        player.advance = who == "jev" or correct or skipped or player.streak >= MAX_MISSES
+        player.ready_at = now if who == "jev" and not correct else now + FEEDBACK_SECONDS
         player.feedback = {
             "correct": correct,
             "skipped": skipped,
@@ -419,14 +458,75 @@ class Match:
 
     def record_usage(self, response: BoxResponse, elapsed_ms: float) -> None:
         """Account for actual usage even when a response is too late to earn a point."""
+        self.record_result(
+            waldo_gateway.Localization(
+                response.model,
+                response.answers.waldo.box,
+                response.answers.waldo.confidence,
+                response.usage,
+                elapsed_ms,
+                estimate_cost_usd(response.model, response.usage.input_tokens),
+                "estimate",
+            )
+        )
+
+    def record_result(self, result: waldo_gateway.Localization) -> None:
+        """Retain billed usage even for invalid boxes and answers arriving after the deadline."""
         self.completed += 1
-        self.model = response.model
-        self.input_tokens += response.usage.input_tokens
-        self.output_tokens += response.usage.output_tokens
-        estimate = estimate_cost_usd(response.model, response.usage.input_tokens)
-        self.unpriced += int(estimate is None)
-        self.cost += estimate or 0
-        self.latencies.append(elapsed_ms)
+        self.model = result.model
+        if result.usage is not None:
+            self.input_tokens += result.usage.input_tokens
+            self.output_tokens += result.usage.output_tokens
+        self.unpriced += int(result.cost_usd is None)
+        self.cost += result.cost_usd or 0
+        self.cost_sources.add(result.cost_basis)
+        self.latencies.append(result.elapsed_ms)
+
+    @property
+    def cost_basis(self) -> str:
+        """Explain when a total mixes gateway charges and local estimates."""
+        return (
+            next(iter(self.cost_sources))
+            if len(self.cost_sources) == 1
+            else ("mixed" if self.cost_sources else "unknown")
+        )
+
+    def result(self, disconnected: bool = False) -> Run:
+        """Create a leaderboard record solely from authoritative server state."""
+        human, ai = self.players["human"], self.players["jev"]
+        status = (
+            "disconnected"
+            if disconnected
+            else "stopped"
+            if self.aborted
+            else ("error" if self.model_error or self.completed == 0 else "completed")
+        )
+        return Run(
+            id=self.run_id,
+            comparison_id=self.comparison_id,
+            stage=self.stage,
+            created_at=self.created_at,
+            duration=self.duration,
+            seed=self.seed,
+            deck=self.deck,
+            model=self.requested_model,
+            resolved_model=self.model,
+            label=self.label,
+            human_score=human.score,
+            human_hits=human.hits,
+            human_misses=human.misses,
+            score=ai.score,
+            hits=ai.hits,
+            misses=ai.misses,
+            calls=self.calls,
+            completed=self.completed,
+            failures=self.failures,
+            cost_usd=None if self.unpriced and not self.cost else self.cost,
+            cost_partial=self.calls > self.completed or self.unpriced > 0,
+            cost_basis=self.cost_basis,
+            average_ms=sum(self.latencies) / len(self.latencies) if self.latencies else None,
+            status=status,
+        )
 
     def snapshot(self, now: float) -> dict[str, object]:
         """Publish scores and genuine telemetry without exposing future solutions."""
@@ -436,6 +536,11 @@ class Match:
         )
         return {
             "type": "state",
+            "run_id": self.run_id,
+            "comparison_id": self.comparison_id,
+            "stage": self.stage,
+            "model_label": self.label,
+            "status": self.result().status if self.ended else None,
             "remaining_ms": round(self.remaining(now) * 1000),
             "duration": self.duration,
             "ended": self.ended,
@@ -459,7 +564,8 @@ class Match:
                 "failures": self.failures,
                 "input_tokens": self.input_tokens,
                 "output_tokens": self.output_tokens,
-                "cost_usd": self.cost,
+                "cost_usd": None if self.unpriced and not self.cost else self.cost,
+                "cost_basis": self.cost_basis,
                 "cost_partial": self.calls > self.completed or self.unpriced > 0,
                 "last_ms": self.latencies[-1] if self.latencies else None,
                 "average_ms": sum(self.latencies) / len(self.latencies) if self.latencies else None,
@@ -476,11 +582,29 @@ async def play(
     duration: int,
     mode: Mode,
     seed: int,
+    *,
+    model: str = MODEL,
+    history: History | None = None,
+    comparison_id: str | None = None,
+    stage: int = 1,
 ) -> None:
     """Run one fair clock with independent turns, disconnect cancellation, and bounded calls."""
-    match = Match(duration, mode, seed, perf_counter())
+    label = "Jev" if model == MODEL else waldo_gateway.BY_MODEL[model].label
+    match = Match(
+        duration,
+        mode,
+        seed,
+        perf_counter(),
+        requested_model=model,
+        model=model,
+        label=label,
+        comparison_id=comparison_id,
+        stage=stage,
+    )
+    disconnected = False
+    saved = False
     receiver: asyncio.Task[str] | None = None
-    inference: asyncio.Task[tuple[BoxResponse, float]] | None = None
+    inference: asyncio.Task[waldo_gateway.Localization] | None = None
     inference_round = 0
     try:
         receiver = asyncio.create_task(socket.receive_text())
@@ -489,20 +613,22 @@ async def play(
             match.tick(now)
             if inference is not None and inference.done():
                 try:
-                    response, elapsed = inference.result()
-                    match.record_usage(response, elapsed)
+                    result = inference.result()
+                    match.record_result(result)
                     match.submit(
                         "jev",
                         inference_round,
-                        response.answers.waldo.box,
+                        result.box,
                         now,
-                        response.answers.waldo.confidence,
-                        elapsed,
+                        result.confidence,
+                        result.elapsed_ms,
+                        invalid_answer=result.box is None,
                     )
                 except JevError as exc:
                     match.failures += 1
                     match.model_error = exc.message
                 inference = None
+                match.tick(now)
             if receiver.done():
                 raw = receiver.result()
                 try:
@@ -528,7 +654,12 @@ async def play(
             ):
                 match.calls += 1
                 inference_round = match.players["jev"].round
-                inference = asyncio.create_task(infer(client, settings, match.puzzle("jev")))
+                inference = asyncio.create_task(
+                    infer_model(client, settings, match.puzzle("jev"), model)
+                )
+            if match.ended and history is not None:
+                await asyncio.to_thread(history.save, match.result())
+                saved = True
             await socket.send_json(match.snapshot(now))
             if not match.ended:
                 pending: set[asyncio.Task[object]] = {receiver}
@@ -536,7 +667,7 @@ async def play(
                     pending.add(inference)
                 await asyncio.wait(pending, timeout=0.1, return_when=asyncio.FIRST_COMPLETED)
     except WebSocketDisconnect:
-        pass
+        disconnected = True
     finally:
         tasks = [task for task in (receiver, inference) if task is not None]
         for task in tasks:
@@ -544,5 +675,9 @@ async def play(
         for task in tasks:
             with suppress(asyncio.CancelledError, WebSocketDisconnect, JevError):
                 await task
+        if history is not None and not saved:
+            await asyncio.to_thread(
+                history.save, match.result(disconnected=disconnected or not match.ended)
+            )
         with suppress(RuntimeError, WebSocketDisconnect):
             await socket.close()
