@@ -1,0 +1,194 @@
+# Jev Decision Lab
+
+A Jira-first developer demo for turning text into typed decisions with [Jev](https://typesafe.ai/).
+Python owns inference, validation, and application policy. React and Mantine provide the
+workbench. All model results are live; nothing silently substitutes canned answers.
+
+## Run locally
+
+Requirements: [uv](https://docs.astral.sh/uv/) and Node.js 22.12+ (or a newer supported LTS).
+The project uses Python 3.14; uv can install it automatically.
+
+```sh
+uv sync
+npm --prefix frontend ci
+test -f .env || cp .env.example .env
+```
+
+Set `TYPESAFE_API_KEY` in `.env`. If `.env` is already configured, keep it rather than
+replacing it. The key stays in Python; it is never embedded in the frontend bundle,
+returned by the API, or included in the request inspector. `.env` is ignored by Git.
+
+```sh
+uv run python scripts/dev.py
+```
+
+Open [the demo](http://127.0.0.1:5173) or [the Python API docs](http://127.0.0.1:8000/docs).
+Ctrl+C stops both development servers.
+
+To serve the compiled frontend and Python API from a single process:
+
+```sh
+npm --prefix frontend run build
+uv run jev-demo
+```
+
+Then open [localhost:8000](http://127.0.0.1:8000).
+
+## Spot on: human vs Jev
+
+The Eraneos demo hub links to [the Waldo game](http://127.0.0.1:8000/waldo).
+Humans click Waldo in generated search scenes; Jev uses image input and the `box`
+primitive on `jev-1.14.0`. Live metrics show response time, calls, accuracy, and estimated cost.
+The default match lasts 60 seconds, configurable from 15 to 180 seconds.
+Sixty generated 1568×882 images mix twelve original compositions with 48 seeded placement
+variants across eleven backgrounds. Clear and crowded scenes are shuffled together for each match.
+The target is inserted into reviewed ground positions, and its reference boxes follow the same transform.
+
+[Reference review](http://127.0.0.1:8000/waldo/referenzen) shows and edits the exact
+scoring regions. Saved corrections persist across restarts and update both views of
+the scene. See [the game guide](docs/WALDO_DEMO.md) for scoring, resources, and validation.
+
+## What it demonstrates
+
+The Jira demo has a queue of **20 distinct fictional Jira tickets**. Run 5, 10, or
+20 tickets and watch each decision arrive. Enable **Parallel requests** to process
+all selected tickets concurrently, with up to 20 Python workers. Uncheck it to process
+the same queue sequentially with one worker.
+Each ticket makes one real TypeSafe request containing Choice, Score, and Noul.
+Parallel tickets are separate HTTP requests; the three questions within a ticket are
+evaluated together by Jev. Nothing is precomputed or replayed as a live result.
+
+The queue highlights **throughput** in successful tickets per second and **estimated cost**.
+The API also reports batch duration, median and p95 request latency, observed maximum
+in-flight tickets, and token usage.
+Click a ticket to inspect its input, model outputs, routing policy, and exact payload.
+The single-ticket workbench and other examples remain available separately.
+
+| Scenario | Choice | Score | Noul |
+| --- | --- | --- | --- |
+| Jira ticket triage | Owning team | Customer impact, 0–4 | P(active production outage) |
+| Reply verification | Supported / contradicted / insufficient | Factual support, 0–4 | P(unsupported factual claim) |
+| Runbook relevance | Mitigation / diagnostic / background / irrelevant | Relevance, 0–4 | P(component match) |
+
+In the single-ticket workbench, choose one of 11 examples or paste your own text. Run all three independent
+questions in one call, inspect the complete distributions, and move the confidence
+threshold to replay **Python policy without another Jev call**. Inspect the actual
+request, raw model response, and executable Python integration.
+
+Runbook relevance judges one supplied incident/runbook pair at a time. It does not
+retrieve documents or execute a runbook. Replies are evaluated, never generated or
+sent. Jira assignment and incident escalation are simulated destinations.
+
+## Lantern Run
+
+The **Lantern Run** tab is a continuous 2D runner set in pixel-art Kyoto at dusk.
+Jev chooses upright, jump, or duck from text geometry as random obstacles approach.
+Jev is queried continuously, one request at a time, and actions execute as responses arrive. Earn distance points upright, fewer while ducking,
+and none while jumping. **Endless** gradually accelerates by 0.1× every 10 real seconds
+until all three hearts are lost. **60 seconds** keeps the timed run and live 0.5×–2× speed control. Switch to manual controls, replay the same seed,
+and inspect real decisions, deadlines, cost, and collisions.
+Open [the game](http://127.0.0.1:8000/#runner) and see [the runner guide](docs/LANTERN_RUN.md).
+
+## The important semantics
+
+- **Choice** selects one named option and returns its full distribution and confidence.
+- **Score** returns the probability-weighted mean of ordered rubric positions, not an
+  invented numerical rating. A 0–4 scale has five descriptive levels.
+- **Noul** returns P(yes) between 0 and 1, with no separate confidence field.
+- Confidence summarizes the model's distribution; it is not the chance a particular
+  answer is correct. Production thresholds require evaluation against representative data.
+- Jev does not generate the prose in the policy panel. These explanations come directly
+  from deterministic Python rules.
+- The displayed round-trip time measures the Python-to-TypeSafe request, including
+  network time. Token counts come from the API. It is not a benchmark or inference-only latency.
+
+The local API uses `jev-latest` by default and displays the resolved model from each
+response. Pin `TYPESAFE_MODEL` to a version when comparing runs or tuning thresholds.
+Text is sent to TypeSafe when you evaluate a ticket or start a batch. Errors remain visible and
+do not trigger hidden retries, substitute results, or external actions. Starting a batch
+submits the selected tickets to TypeSafe. Stopping the stream cancels local workers;
+requests already received by TypeSafe may still be processed and billed.
+
+### Reading the speed display
+
+- Batch duration runs from server-side batch start until all requested tickets have
+  succeeded or failed. It includes queueing, network calls, and local validation,
+  but excludes browser rendering and final response delivery.
+- Throughput is **successful tickets ÷ batch duration**. Failures are counted separately.
+- Per-ticket latency is the Python-to-TypeSafe round trip, including network time;
+  it is not inference-only latency. p50 is the median and p95 uses the nearest-rank method.
+- Latency and token totals include successful responses only. Missing latency and cost
+  estimates remain empty when no tickets succeed.
+- Concurrency is a local worker limit, not a guarantee of backend model execution timing.
+  Account limits, network conditions, and contention can change observed performance.
+- A sequential/parallel comparison is meaningful only for the same tickets and model.
+  Run both modes to measure a speedup; do not multiply one ticket's latency into a claimed baseline.
+
+### Reading estimated cost
+
+The API does not return a billed cost. Python estimates USD from successful responses'
+reported input tokens and the resolved model ID. For `jev-1.13.0` and `jev-1.14.0`, the published price
+is **$0.042 per million input tokens**, with free output tokens; verified on
+**2026-10-15** against [TypeSafe's model pricing](https://docs.typesafe.ai/models).
+The three questions share one request, so the estimate does not multiply token usage by three.
+
+Unknown model versions, unresolved aliases, and batches containing different resolved
+models have no aggregate estimate. Failed or cancelled requests may still incur charges,
+but their missing usage cannot be included. A partial batch estimate therefore covers
+only its successful responses and is not a final bill. Update the pinned pricing rule
+when published rates change.
+
+## Project structure
+
+```text
+backend/jev_demo/
+  app.py       FastAPI routes and connection lifecycle
+  batch.py     Bounded async workers, NDJSON streaming, and cancellation
+  batch_models.py Batch progress events and measured summaries
+  catalog.py   Text examples, questions, and rubrics
+  tickets.py   Twenty distinct fictional Jira issues
+  models.py    Validated request/response models
+  policy.py    Deterministic routing and review rules
+  pricing.py   Published input-token cost estimate for known model versions
+  service.py   Async TypeSafe HTTP adapter
+frontend/      React + TypeScript + Mantine workbench
+tests/         Policy and transport boundary tests
+scripts/dev.py Both development servers in one command
+docs/DEMO.md   Presentation narrative and extensions
+```
+
+`POST /api/evaluate` makes one outbound TypeSafe request. `POST /api/policy` only applies
+local rules to an existing response. `GET /api/health` indicates whether a key is
+configured, not whether TypeSafe has accepted it. `GET /api/scenarios` exposes all
+presets and their exact questions.
+
+`GET /api/triage/tickets` returns the Jira queue. `POST /api/triage/batch` accepts
+`ticket_ids`, `concurrency` (1–20, default 20), and `threshold`, then streams newline-delimited JSON.
+The interface sends the selected ticket count when **Parallel requests** is checked
+and one when it is unchecked; the API also accepts intermediate worker limits.
+Events announce batch start, ticket start, ticket success/failure, and a final summary.
+The endpoint validates the full selection before making any upstream request and
+never repeats a ticket within one batch.
+
+This is a local demo with no database or authentication. It binds to loopback and uses
+same-origin requests. Add access controls and request budgets before hosting a shared
+instance. No real Jira connector is configured.
+
+## Checks
+
+```sh
+uv run ruff check .
+uv run basedpyright
+uv run pytest
+npm --prefix frontend run typecheck
+npm --prefix frontend run build
+```
+
+## Reference
+
+[TypeSafe API](https://docs.typesafe.ai/api) ·
+[Choice](https://docs.typesafe.ai/primitives/choice) ·
+[Score](https://docs.typesafe.ai/primitives/score) ·
+[Noul](https://docs.typesafe.ai/primitives/noul) ·
+[Confidence](https://docs.typesafe.ai/confidence)

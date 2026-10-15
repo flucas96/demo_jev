@@ -1,0 +1,188 @@
+"""Validated wire models for Jev and the local developer workbench."""
+
+from typing import Annotated, Literal, Self
+
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+type Probability = Annotated[float, Field(ge=0, le=1, allow_inf_nan=False)]
+
+
+class ChoiceQuestion(BaseModel):
+    """An unordered decision between explicitly described alternatives."""
+
+    type: Literal["choice"] = "choice"
+    instructions: str
+    criteria: dict[str, str]
+
+
+class ScoreQuestion(BaseModel):
+    """A position on a rubric whose levels are described in ascending order."""
+
+    type: Literal["score"] = "score"
+    instructions: str
+    criteria: list[str] = Field(min_length=2, max_length=10)
+
+
+class NoulQuestion(BaseModel):
+    """A single proposition evaluated as the probability of yes."""
+
+    type: Literal["noul"] = "noul"
+    instructions: str
+    criteria: dict[str, str] | None = None
+
+
+class Questions(BaseModel):
+    """Three independent questions evaluated against the same text state."""
+
+    choice: ChoiceQuestion
+    score: ScoreQuestion
+    noul: NoulQuestion
+
+
+class Example(BaseModel):
+    """A fictional text input that visitors can inspect and edit."""
+
+    id: str
+    title: str
+    text: str
+    tag: str
+
+
+class Scenario(BaseModel):
+    """A complete workbench preset with a shared rubric and example inputs."""
+
+    id: str
+    title: str
+    eyebrow: str
+    description: str
+    icon: str
+    choice_label: str
+    score_label: str
+    noul_label: str
+    score_labels: list[str]
+    examples: list[Example]
+    questions: Questions
+    policy_description: str
+    docs_url: str
+
+
+class ChoiceAnswer(BaseModel):
+    """A chosen option, its full distribution, and distribution confidence."""
+
+    type: Literal["choice"]
+    choice: str
+    confidence: Probability
+    probabilities: dict[str, Probability] = Field(min_length=1)
+
+
+class ScoreAnswer(BaseModel):
+    """The weighted mean of rubric positions and the underlying distribution."""
+
+    type: Literal["score"]
+    score: float = Field(ge=0, le=9, allow_inf_nan=False)
+    confidence: Probability
+    probabilities: dict[str, Probability] = Field(min_length=2, max_length=10)
+    legend: dict[str, str]
+
+
+class NoulAnswer(BaseModel):
+    """The probability of yes; this primitive has no separate confidence field."""
+
+    type: Literal["noul"]
+    noul: Probability
+
+
+class Answers(BaseModel):
+    """Typed answers under stable application question identifiers."""
+
+    choice: ChoiceAnswer
+    score: ScoreAnswer
+    noul: NoulAnswer
+
+
+class Usage(BaseModel):
+    """Token counts supplied by TypeSafe, never estimated by the demo."""
+
+    input_tokens: int = Field(ge=0)
+    output_tokens: int = Field(ge=0)
+
+
+class JevResponse(BaseModel):
+    """The public TypeSafe response, without transport or credential details."""
+
+    model: str
+    answers: Answers
+    usage: Usage
+
+    @model_validator(mode="after")
+    def validate_distributions(self) -> Self:
+        """Reject contradictory values before a policy acts on them."""
+        choice, score = self.answers.choice, self.answers.score
+        for distribution in (choice.probabilities, score.probabilities):
+            if abs(sum(distribution.values()) - 1) > 0.015:
+                raise ValueError("Probabilities must sum to one.")
+        if choice.choice not in choice.probabilities:
+            raise ValueError("The selected choice must belong to its distribution.")
+        if choice.probabilities[choice.choice] < max(choice.probabilities.values()) - 0.001:
+            raise ValueError("The selected choice must have maximal probability.")
+        expected_levels = {str(level) for level in range(len(score.probabilities))}
+        if set(score.probabilities) != expected_levels or set(score.legend) != expected_levels:
+            raise ValueError("Score levels must be contiguous and agree with the legend.")
+        weighted_score = sum(int(level) * prob for level, prob in score.probabilities.items())
+        if abs(score.score - weighted_score) > 0.05:
+            raise ValueError("The score must agree with its probability-weighted levels.")
+        return self
+
+
+class JevRequest(BaseModel):
+    """The exact credential-free request body sent to TypeSafe."""
+
+    model: str
+    state: str
+    questions: Questions
+
+
+class EvaluateRequest(BaseModel):
+    """An editable text state with the application's review threshold."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+    scenario_id: str = Field(min_length=1, max_length=40)
+    text: str = Field(min_length=1, max_length=16000)
+    threshold: Probability = 0.8
+
+
+class PolicyRequest(BaseModel):
+    """A cached model answer re-evaluated in Python without another model call."""
+
+    model_config = ConfigDict(extra="forbid")
+    scenario_id: str
+    threshold: Probability
+    response: JevResponse
+
+
+class Decision(BaseModel):
+    """A deterministic policy trace, not an explanation generated by Jev."""
+
+    action: Literal["route", "review", "escalate"]
+    destination: str
+    label: str
+    reasons: list[str]
+    threshold: Probability
+
+
+class Evaluation(BaseModel):
+    """A live assessment together with its measured round trip and policy."""
+
+    source: Literal["live"] = "live"
+    request: JevRequest
+    response: JevResponse
+    elapsed_ms: float
+    decision: Decision
+    estimated_cost_usd: float | None = None
+
+
+class Health(BaseModel):
+    """Non-sensitive configuration status; this does not probe TypeSafe."""
+
+    configured: bool
+    model: str

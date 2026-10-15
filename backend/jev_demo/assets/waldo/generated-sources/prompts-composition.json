@@ -1,0 +1,66 @@
+{
+  "method": "Built-in imagegen: generated transparent sprite and precise edits of our generated illustrations; seeded Pillow composition transforms image pixels and reference boxes together.",
+  "sprite": "Use case: illustration-story. Asset type: transparent character sprite for a procedurally composed hidden-person game. Create ONE full-body Waldo / Wally cutout on a genuinely transparent background. Slender adult man with brown hair, round black glasses, friendly expression, red-and-white horizontally striped long-sleeve shirt, red-and-white knit hat with red pom-pom, blue trousers, brown shoes. Full head and feet visible, no cane or bag. Relaxed walking pose, viewed from slightly above at a three-quarter angle, facing slightly toward the viewer and right. Crisp contemporary hand-drawn editorial cartoon with clean fine dark outlines, flat clear colors and very subtle shading, coherent anatomy, no blur, no texture grain. Narrow natural silhouette, arms near torso; no large empty area between legs. Match the line detail of a detailed illustrated crowd scene. Isolate the entire figure with clean anti-aliased edges and no halo, no ground plane, no cast shadow, no surrounding objects, no caption, no border, no lettering, no extra characters. Portrait image.",
+  "plates": [
+    {
+      "input": "station.png",
+      "output": "station-plate.png",
+      "prompt": "Use case: precise-object-edit. This attached illustration is the edit target. Remove only Waldo/Wally, the man with red-and-white horizontally striped shirt, red-and-white pom-pom hat and blue trousers. Seamlessly reconstruct the ground behind him. Leave that location empty. Keep all other people, objects, architecture, framing, dimensions, perspective, colors, sharp fine outlines and background detail exactly unchanged. Do not insert another Waldo or similar character. No annotations or text. This will be a background plate for an illustrated search game."
+    },
+    {
+      "input": "market.png",
+      "output": "market-plate.png",
+      "prompt": "Use case: precise-object-edit. This attached illustration is the edit target. Remove only Waldo/Wally, the man with red-and-white horizontally striped shirt, red-and-white pom-pom hat and blue trousers. Seamlessly reconstruct the ground behind him. Leave that location empty. Keep all other people, objects, architecture, framing, dimensions, perspective, colors, sharp fine outlines and background detail exactly unchanged. Do not insert another Waldo or similar character. No annotations or text. This will be a background plate for an illustrated search game."
+    },
+    {
+      "input": "park.png",
+      "output": "park-plate.png",
+      "prompt": "Use case: precise-object-edit. This attached illustration is the edit target. Remove only Waldo/Wally, the man with red-and-white horizontally striped shirt, red-and-white pom-pom hat and blue trousers. Seamlessly reconstruct the ground behind him. Leave that location empty. Keep all other people, objects, architecture, framing, dimensions, perspective, colors, sharp fine outlines and background detail exactly unchanged. Do not insert another Waldo or similar character. No annotations or text. This will be a background plate for an illustrated search game."
+    },
+    {
+      "input": "museum.png",
+      "output": "museum-plate.png",
+      "prompt": "Use case: precise-object-edit. This attached illustration is the edit target. Remove only Waldo/Wally, the man with red-and-white horizontally striped shirt, red-and-white pom-pom hat and blue trousers. Seamlessly reconstruct the ground behind him. Leave that location empty. Keep all other people, objects, architecture, framing, dimensions, perspective, colors, sharp fine outlines and background detail exactly unchanged. Do not insert another Waldo or similar character. No annotations or text. This will be a background plate for an illustrated search game."
+    },
+    {
+      "input": "harbor.png",
+      "output": "harbor-plate.png",
+      "prompt": "Use case: precise-object-edit. This attached illustration is the edit target. Remove only Waldo/Wally, the man with red-and-white horizontally striped shirt, red-and-white pom-pom hat and blue trousers. Seamlessly reconstruct the ground behind him. Leave that location empty. Keep all other people, objects, architecture, framing, dimensions, perspective, colors, sharp fine outlines and background detail exactly unchanged. Do not insert another Waldo or similar character. No annotations or text. This will be a background plate for an illustrated search game."
+    },
+    {
+      "input": "festival.png",
+      "output": "festival-plate.png",
+      "prompt": "Use case: precise-object-edit. This attached illustration is the edit target. Remove only Waldo/Wally, the man with red-and-white horizontally striped shirt, red-and-white pom-pom hat and blue trousers. Seamlessly reconstruct the ground behind him. Leave that location empty. Keep all other people, objects, architecture, framing, dimensions, perspective, colors, sharp fine outlines and background detail exactly unchanged. Do not insert another Waldo or similar character. No annotations or text. This will be a background plate for an illustrated search game."
+    },
+    {
+      "input": "beach-crowd.png",
+      "output": "beach-crowd-plate.png",
+      "prompt": "Use case: precise-object-edit. Edit target: the attached Am belebten Strand crowd illustration. Turn it into a background plate for a hidden-person game. Remove only the Waldo/Wally character wearing the red-and-white striped shirt, red-and-white pom-pom hat and blue trousers. Reconstruct the ground and small background details where his silhouette was, seamlessly. Do not replace him with another character. All other people, faces, clothing, objects, architectural features, scene perspective, framing, image size, line style and colors must remain unchanged. Keep all existing sharp detail. Do not add a Waldo anywhere else. No other red-and-white striped shirt plus matching red-and-white pom-pom hat combination should remain. No annotation, no boxes, no labels. Output a clean full-bleed landscape crowd scene without Waldo."
+    },
+    {
+      "input": "garden-crowd.png",
+      "output": "garden-crowd-plate.png",
+      "prompt": "Use case: precise-object-edit. Edit target: the attached Im botanischen Garten crowd illustration. Turn it into a background plate for a hidden-person game. Remove only the Waldo/Wally character wearing the red-and-white striped shirt, red-and-white pom-pom hat and blue trousers. Reconstruct the ground and small background details where his silhouette was, seamlessly. Do not replace him with another character. All other people, faces, clothing, objects, architectural features, scene perspective, framing, image size, line style and colors must remain unchanged. Keep all existing sharp detail. Do not add a Waldo anywhere else. No other red-and-white striped shirt plus matching red-and-white pom-pom hat combination should remain. No annotation, no boxes, no labels. Output a clean full-bleed landscape crowd scene without Waldo."
+    },
+    {
+      "input": "airport-crowd.png",
+      "output": "airport-crowd-plate.png",
+      "prompt": "Use case: precise-object-edit. Edit target: the attached Am Flughafen crowd illustration. Turn it into a background plate for a hidden-person game. Remove only the Waldo/Wally character wearing the red-and-white striped shirt, red-and-white pom-pom hat and blue trousers. Reconstruct the ground and small background details where his silhouette was, seamlessly. Do not replace him with another character. All other people, faces, clothing, objects, architectural features, scene perspective, framing, image size, line style and colors must remain unchanged. Keep all existing sharp detail. Do not add a Waldo anywhere else. No other red-and-white striped shirt plus matching red-and-white pom-pom hat combination should remain. No annotation, no boxes, no labels. Output a clean full-bleed landscape crowd scene without Waldo."
+    },
+    {
+      "input": "bookfair-crowd.png",
+      "output": "bookfair-crowd-plate.png",
+      "prompt": "Use case: precise-object-edit. Edit target: the attached Auf der Buchmesse crowd illustration. Turn it into a background plate for a hidden-person game. Remove only the Waldo/Wally character wearing the red-and-white striped shirt, red-and-white pom-pom hat and blue trousers. Reconstruct the ground and small background details where his silhouette was, seamlessly. Do not replace him with another character. All other people, faces, clothing, objects, architectural features, scene perspective, framing, image size, line style and colors must remain unchanged. Keep all existing sharp detail. Do not add a Waldo anywhere else. No other red-and-white striped shirt plus matching red-and-white pom-pom hat combination should remain. No annotation, no boxes, no labels. Output a clean full-bleed landscape crowd scene without Waldo."
+    },
+    {
+      "input": "square-crowd.png",
+      "output": "square-crowd-plate.png",
+      "prompt": "Use case: precise-object-edit. Edit target: the attached Auf dem Rathausplatz crowd illustration. Turn it into a background plate for a hidden-person game. Remove only the Waldo/Wally character wearing the red-and-white striped shirt, red-and-white pom-pom hat and blue trousers. Reconstruct the ground and small background details where his silhouette was, seamlessly. Do not replace him with another character. All other people, faces, clothing, objects, architectural features, scene perspective, framing, image size, line style and colors must remain unchanged. Keep all existing sharp detail. Do not add a Waldo anywhere else. No other red-and-white striped shirt plus matching red-and-white pom-pom hat combination should remain. No annotation, no boxes, no labels. Output a clean full-bleed landscape crowd scene without Waldo."
+    },
+    {
+      "input": "funfair-crowd.png",
+      "output": "funfair-crowd-plate.png",
+      "prompt": "Use case: precise-object-edit. Edit target: the attached Auf dem Jahrmarkt crowd illustration. Turn it into a background plate for a hidden-person game. Remove only the Waldo/Wally character wearing the red-and-white striped shirt, red-and-white pom-pom hat and blue trousers. Reconstruct the ground and small background details where his silhouette was, seamlessly. Do not replace him with another character. All other people, faces, clothing, objects, architectural features, scene perspective, framing, image size, line style and colors must remain unchanged. Keep all existing sharp detail. Do not add a Waldo anywhere else. No other red-and-white striped shirt plus matching red-and-white pom-pom hat combination should remain. No annotation, no boxes, no labels. Output a clean full-bleed landscape crowd scene without Waldo."
+    }
+  ]
+}

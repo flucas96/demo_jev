@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "scene-16-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1001,
+    "reference": {
+      "left": 0.19976076555023922,
+      "right": 0.2876794258373206,
+      "top": 0.4505844845908608,
+      "bottom": 0.8055260361317748
+    },
+    "head": {
+      "left": 0.23205741626794257,
+      "right": 0.2673444976076555,
+      "top": 0.4505844845908608,
+      "bottom": 0.5334750265674814
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Am Bahnhof"
+  },
+  {
+    "id": "scene-17-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1002,
+    "reference": {
+      "left": 0.6860047846889952,
+      "right": 0.7607655502392344,
+      "top": 0.29330499468650373,
+      "bottom": 0.614240170031881
+    },
+    "head": {
+      "left": 0.7135167464114832,
+      "right": 0.7458133971291866,
+      "top": 0.29330499468650373,
+      "bottom": 0.3645058448459086
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Auf dem Markt"
+  },
+  {
+    "id": "scene-18-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1003,
+    "reference": {
+      "left": 0.3857655502392344,
+      "right": 0.4599282296650718,
+      "top": 0.5185972369819342,
+      "bottom": 0.8140276301806588
+    },
+    "head": {
+      "left": 0.4061004784688995,
+      "right": 0.4342105263157895,
+      "top": 0.5185972369819342,
+      "bottom": 0.5812964930924548
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Im Stadtpark"
+  },
+  {
+    "id": "scene-19-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1004,
+    "reference": {
+      "left": 0.7188995215311005,
+      "right": 0.7595693779904307,
+      "top": 0.0924548352816153,
+      "bottom": 0.361317747077577
+    },
+    "head": {
+      "left": 0.7296650717703349,
+      "right": 0.7595693779904307,
+      "top": 0.0924548352816153,
+      "bottom": 0.153028692879915
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Im Museum"
+  },
+  {
+    "id": "scene-20-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1005,
+    "reference": {
+      "left": 0.729066985645933,
+      "right": 0.8151913875598086,
+      "top": 0.48459086078639746,
+      "bottom": 0.8703506907545164
+    },
+    "head": {
+      "left": 0.7517942583732058,
+      "right": 0.7888755980861244,
+      "top": 0.48459086078639746,
+      "bottom": 0.5685441020191286
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Am Hafen"
+  },
+  {
+    "id": "scene-21-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1006,
+    "reference": {
+      "left": 0.24760765550239233,
+      "right": 0.3253588516746411,
+      "top": 0.16259298618490967,
+      "bottom": 0.48990435706695007
+    },
+    "head": {
+      "left": 0.27332535885167464,
+      "right": 0.3062200956937799,
+      "top": 0.16259298618490967,
+      "bottom": 0.23379383634431455
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Beim Stra\u00dfenfest"
+  },
+  {
+    "id": "scene-22-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1007,
+    "reference": {
+      "left": 0.5651913875598086,
+      "right": 0.6196172248803827,
+      "top": 0.45164718384697133,
+      "bottom": 0.69394261424017
+    },
+    "head": {
+      "left": 0.5831339712918661,
+      "right": 0.6076555023923444,
+      "top": 0.45164718384697133,
+      "bottom": 0.5069075451647184
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Am belebten Strand"
+  },
+  {
+    "id": "scene-23-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1008,
+    "reference": {
+      "left": 0.305622009569378,
+      "right": 0.3444976076555024,
+      "top": 0.2603613177470776,
+      "bottom": 0.48990435706695007
+    },
+    "head": {
+      "left": 0.32057416267942584,
+      "right": 0.33851674641148327,
+      "top": 0.2603613177470776,
+      "bottom": 0.31137088204038255
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Im botanischen Garten"
+  },
+  {
+    "id": "scene-24-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1009,
+    "reference": {
+      "left": 0.4449760765550239,
+      "right": 0.48983253588516745,
+      "top": 0.28055260361317746,
+      "bottom": 0.5451647183846972
+    },
+    "head": {
+      "left": 0.458133971291866,
+      "right": 0.4826555023923445,
+      "top": 0.28055260361317746,
+      "bottom": 0.3432518597236982
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Am Flughafen"
+  },
+  {
+    "id": "scene-25-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1010,
+    "reference": {
+      "left": 0.5095693779904307,
+      "right": 0.5544258373205742,
+      "top": 0.179596174282678,
+      "bottom": 0.37725823591923485
+    },
+    "head": {
+      "left": 0.5221291866028708,
+      "right": 0.5466507177033493,
+      "top": 0.179596174282678,
+      "bottom": 0.24017003188097769
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Auf der Buchmesse"
+  },
+  {
+    "id": "scene-26-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1011,
+    "reference": {
+      "left": 0.35586124401913877,
+      "right": 0.38995215311004783,
+      "top": 0.179596174282678,
+      "bottom": 0.332624867162593
+    },
+    "head": {
+      "left": 0.3672248803827751,
+      "right": 0.3827751196172249,
+      "top": 0.179596174282678,
+      "bottom": 0.21785334750265675
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Auf dem Rathausplatz"
+  },
+  {
+    "id": "scene-27-sprint",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 1012,
+    "reference": {
+      "left": 0.25478468899521534,
+      "right": 0.3014354066985646,
+      "top": 0.410201912858661,
+      "bottom": 0.6046758767268863
+    },
+    "head": {
+      "left": 0.27212918660287083,
+      "right": 0.29246411483253587,
+      "top": 0.410201912858661,
+      "bottom": 0.46014877789585545
+    },
+    "generated": true,
+    "procedural": false,
+    "title": "Auf dem Jahrmarkt"
+  },
+  {
+    "id": "mix-station-plate-1ef99a1737ae",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 34057380902830,
+    "reference": {
+      "left": 0.21770334928229665,
+      "right": 0.2727272727272727,
+      "top": 0.45589798087141337,
+      "bottom": 0.7948990435706695
+    },
+    "head": {
+      "left": 0.2361738212368309,
+      "right": 0.26743154300604266,
+      "top": 0.45589798087141337,
+      "bottom": 0.5256654060558082
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Bahnhof \u00b7 01"
+  },
+  {
+    "id": "mix-station-plate-191f8a39e736",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 27623253731126,
+    "reference": {
+      "left": 0.2900717703349282,
+      "right": 0.3187799043062201,
+      "top": 0.2051009564293305,
+      "bottom": 0.383634431455898
+    },
+    "head": {
+      "left": 0.299708538311207,
+      "right": 0.31601691488644784,
+      "top": 0.2051009564293305,
+      "bottom": 0.2418436756486983
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Bahnhof \u00b7 02"
+  },
+  {
+    "id": "mix-station-plate-abbae0237046",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 188819112685638,
+    "reference": {
+      "left": 0.4784688995215311,
+      "right": 0.5245215311004785,
+      "top": 0.3443145589798087,
+      "bottom": 0.6291179596174282
+    },
+    "head": {
+      "left": 0.48290119504908235,
+      "right": 0.5090625491385313,
+      "top": 0.3443145589798087,
+      "bottom": 0.4029279444011812
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Bahnhof \u00b7 03"
+  },
+  {
+    "id": "mix-station-plate-f27f8d0f80cf",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 266629641371855,
+    "reference": {
+      "left": 0.7099282296650717,
+      "right": 0.7470095693779905,
+      "top": 0.3985122210414453,
+      "bottom": 0.6291179596174282
+    },
+    "head": {
+      "left": 0.7134970909989442,
+      "right": 0.7345620774086303,
+      "top": 0.3985122210414453,
+      "bottom": 0.4459715666997954
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Bahnhof \u00b7 04"
+  },
+  {
+    "id": "mix-station-plate-09c381bb9fa9",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 10735299829673,
+    "reference": {
+      "left": 0.5400717703349283,
+      "right": 0.5950956937799043,
+      "top": 0.6195536663124336,
+      "bottom": 0.9606801275239107
+    },
+    "head": {
+      "left": 0.5585422422894625,
+      "right": 0.5897999640586742,
+      "top": 0.6195536663124336,
+      "bottom": 0.6897585048208685
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Bahnhof \u00b7 05"
+  },
+  {
+    "id": "mix-market-plate-b4faefe34184",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 198989859471748,
+    "reference": {
+      "left": 0.7003588516746412,
+      "right": 0.7482057416267942,
+      "top": 0.3177470775770457,
+      "bottom": 0.614240170031881
+    },
+    "head": {
+      "left": 0.7164201316351057,
+      "right": 0.7436007592605073,
+      "top": 0.3177470775770457,
+      "bottom": 0.37876623628063866
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Markt \u00b7 01"
+  },
+  {
+    "id": "mix-market-plate-9c1be37ff6bc",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 171643594864316,
+    "reference": {
+      "left": 0.24641148325358853,
+      "right": 0.28588516746411485,
+      "top": 0.27417640807651433,
+      "bottom": 0.5196599362380446
+    },
+    "head": {
+      "left": 0.2502105937057753,
+      "right": 0.27263461149673157,
+      "top": 0.27417640807651433,
+      "bottom": 0.3246976470031451
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Markt \u00b7 02"
+  },
+  {
+    "id": "mix-market-plate-d52ee0ce325f",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 234397316821599,
+    "reference": {
+      "left": 0.4820574162679426,
+      "right": 0.5316985645933014,
+      "top": 0.4665249734325186,
+      "bottom": 0.7747077577045696
+    },
+    "head": {
+      "left": 0.48683508547296533,
+      "right": 0.5150349866343195,
+      "top": 0.4665249734325186,
+      "bottom": 0.5299499054183321
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Markt \u00b7 03"
+  },
+  {
+    "id": "mix-market-plate-d30d81eb16d9",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 232054967703257,
+    "reference": {
+      "left": 0.3355263157894737,
+      "right": 0.3857655502392344,
+      "top": 0.4675876726886291,
+      "bottom": 0.7789585547290117
+    },
+    "head": {
+      "left": 0.3403615472740751,
+      "right": 0.36890120628074674,
+      "top": 0.4675876726886291,
+      "bottom": 0.5316687246605027
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Markt \u00b7 04"
+  },
+  {
+    "id": "mix-park-plate-7bc702a7897a",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 136094673242490,
+    "reference": {
+      "left": 0.39593301435406697,
+      "right": 0.4407894736842105,
+      "top": 0.5313496280552603,
+      "bottom": 0.8087141339001063
+    },
+    "head": {
+      "left": 0.4002501853224611,
+      "right": 0.425732023721275,
+      "top": 0.5313496280552603,
+      "bottom": 0.5884320668424924
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im Stadtpark \u00b7 01"
+  },
+  {
+    "id": "mix-park-plate-8bb6b015f237",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 153616754537015,
+    "reference": {
+      "left": 0.3008373205741627,
+      "right": 0.33672248803827753,
+      "top": 0.357066950053135,
+      "bottom": 0.5770456960680127
+    },
+    "head": {
+      "left": 0.30429105734887796,
+      "right": 0.3246765280679291,
+      "top": 0.357066950053135,
+      "bottom": 0.40233922909128456
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im Stadtpark \u00b7 02"
+  },
+  {
+    "id": "mix-park-plate-f65204b3452b",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 270832126608683,
+    "reference": {
+      "left": 0.6375598086124402,
+      "right": 0.6632775119617225,
+      "top": 0.07438894792773645,
+      "bottom": 0.23379383634431455
+    },
+    "head": {
+      "left": 0.6400349866343195,
+      "right": 0.6546445739829728,
+      "top": 0.07438894792773645,
+      "bottom": 0.10719494723074341
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im Stadtpark \u00b7 03"
+  },
+  {
+    "id": "mix-park-plate-0d63bf5a259c",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 14722063279516,
+    "reference": {
+      "left": 0.8433014354066986,
+      "right": 0.8851674641148325,
+      "top": 0.49309245483528164,
+      "bottom": 0.7502656748140276
+    },
+    "head": {
+      "left": 0.857355055372105,
+      "right": 0.8811381045443314,
+      "top": 0.49309245483528164,
+      "bottom": 0.5460194670441328
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im Stadtpark \u00b7 04"
+  },
+  {
+    "id": "mix-park-plate-1a33e9196ba8",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 28810256411560,
+    "reference": {
+      "left": 0.4742822966507177,
+      "right": 0.5221291866028708,
+      "top": 0.6014877789585548,
+      "bottom": 0.895855472901169
+    },
+    "head": {
+      "left": 0.47888727901700473,
+      "right": 0.5060679066424063,
+      "top": 0.6014877789585548,
+      "bottom": 0.6620695243381076
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im Stadtpark \u00b7 05"
+  },
+  {
+    "id": "mix-museum-plate-2fb86bbefea8",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 52469128167080,
+    "reference": {
+      "left": 0.722488038277512,
+      "right": 0.763755980861244,
+      "top": 0.10945802337938364,
+      "bottom": 0.3645058448459086
+    },
+    "head": {
+      "left": 0.7363408922434127,
+      "right": 0.7597841835703214,
+      "top": 0.10945802337938364,
+      "bottom": 0.1619476222641948
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im Museum \u00b7 01"
+  },
+  {
+    "id": "mix-museum-plate-da5d2cb4b9d0",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 240093716855248,
+    "reference": {
+      "left": 0.19078947368421054,
+      "right": 0.22667464114832536,
+      "top": 0.1126461211477152,
+      "bottom": 0.332624867162593
+    },
+    "head": {
+      "left": 0.1942432104589258,
+      "right": 0.21462868117797695,
+      "top": 0.1126461211477152,
+      "bottom": 0.1579184001858648
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im Museum \u00b7 02"
+  },
+  {
+    "id": "mix-museum-plate-225aa3614f67",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 37772683464551,
+    "reference": {
+      "left": 0.3241626794258373,
+      "right": 0.36782296650717705,
+      "top": 0.3783209351753454,
+      "bottom": 0.6471838469713072
+    },
+    "head": {
+      "left": 0.3283647258350742,
+      "right": 0.35316704854325315,
+      "top": 0.3783209351753454,
+      "bottom": 0.43365372066641716
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im Museum \u00b7 03"
+  },
+  {
+    "id": "mix-museum-plate-e0f23fe83478",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 247331058889848,
+    "reference": {
+      "left": 0.7452153110047847,
+      "right": 0.7984449760765551,
+      "top": 0.5685441020191286,
+      "bottom": 0.895855472901169
+    },
+    "head": {
+      "left": 0.750338353887279,
+      "right": 0.7805768021205381,
+      "top": 0.5685441020191286,
+      "bottom": 0.6359057539213029
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im Museum \u00b7 04"
+  },
+  {
+    "id": "mix-museum-plate-ed9dc8ee7a6e",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 261261936720494,
+    "reference": {
+      "left": 0.42822966507177035,
+      "right": 0.48026315789473684,
+      "top": 0.6163655685441021,
+      "bottom": 0.9383634431455898
+    },
+    "head": {
+      "left": 0.4456963070287755,
+      "right": 0.47525523957139965,
+      "top": 0.6163655685441021,
+      "bottom": 0.6826336871361761
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im Museum \u00b7 05"
+  },
+  {
+    "id": "mix-harbor-plate-5777de39d975",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 96172341057909,
+    "reference": {
+      "left": 0.7356459330143541,
+      "right": 0.7936602870813397,
+      "top": 0.5047821466524973,
+      "bottom": 0.8650371944739639
+    },
+    "head": {
+      "left": 0.7551202349664173,
+      "right": 0.7880767459622168,
+      "top": 0.5047821466524973,
+      "bottom": 0.5789237050772931
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Hafen \u00b7 01"
+  },
+  {
+    "id": "mix-harbor-plate-5ad556212470",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 99872319546480,
+    "reference": {
+      "left": 0.319377990430622,
+      "right": 0.35944976076555024,
+      "top": 0.21253985122210414,
+      "bottom": 0.461211477151966
+    },
+    "head": {
+      "left": 0.32323466316238736,
+      "right": 0.3459984387986612,
+      "top": 0.21253985122210414,
+      "bottom": 0.263717210134795
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Hafen \u00b7 02"
+  },
+  {
+    "id": "mix-harbor-plate-fc4f61d033b9",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 277417873650617,
+    "reference": {
+      "left": 0.5311004784688995,
+      "right": 0.5807416267942583,
+      "top": 0.3379383634431456,
+      "bottom": 0.6461211477151966
+    },
+    "head": {
+      "left": 0.5477640564278815,
+      "right": 0.5759639575892356,
+      "top": 0.3379383634431456,
+      "bottom": 0.40136329542895904
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Hafen \u00b7 03"
+  },
+  {
+    "id": "mix-harbor-plate-09a2a362d2a0",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 10594130514592,
+    "reference": {
+      "left": 0.3618421052631579,
+      "right": 0.416866028708134,
+      "top": 0.5058448459086079,
+      "bottom": 0.844845908607864
+    },
+    "head": {
+      "left": 0.36713783498438796,
+      "right": 0.3983955567535998,
+      "top": 0.5058448459086079,
+      "bottom": 0.5756122710930026
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Hafen \u00b7 04"
+  },
+  {
+    "id": "mix-festival-plate-5c8c67e7a675",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 101758108411509,
+    "reference": {
+      "left": 0.26674641148325356,
+      "right": 0.3145933014354067,
+      "top": 0.19553666312433582,
+      "bottom": 0.4909670563230606
+    },
+    "head": {
+      "left": 0.27135139384954066,
+      "right": 0.2985320214749422,
+      "top": 0.19553666312433582,
+      "bottom": 0.25633711516590874
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Beim Stra\u00dfenfest \u00b7 01"
+  },
+  {
+    "id": "mix-festival-plate-d6f4d4e87dc2",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 236347032370626,
+    "reference": {
+      "left": 0.4001196172248804,
+      "right": 0.451555023923445,
+      "top": 0.44314558979808716,
+      "bottom": 0.7619553666312433
+    },
+    "head": {
+      "left": 0.4050699732686389,
+      "right": 0.4342891479659456,
+      "top": 0.44314558979808716,
+      "bottom": 0.5087575884041011
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Beim Stra\u00dfenfest \u00b7 02"
+  },
+  {
+    "id": "mix-festival-plate-4ec74c33d29d",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 86617883923101,
+    "reference": {
+      "left": 0.7206937799043063,
+      "right": 0.7721291866028708,
+      "top": 0.4293304994686504,
+      "bottom": 0.7460148777895855
+    },
+    "head": {
+      "left": 0.7256441359480648,
+      "right": 0.7548633106453714,
+      "top": 0.4293304994686504,
+      "bottom": 0.4945050847506242
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Beim Stra\u00dfenfest \u00b7 03"
+  },
+  {
+    "id": "mix-festival-plate-306d549cc406",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 53246129128454,
+    "reference": {
+      "left": 0.1674641148325359,
+      "right": 0.229066985645933,
+      "top": 0.5451647183846972,
+      "bottom": 0.924548352816153
+    },
+    "head": {
+      "left": 0.17339302962913045,
+      "right": 0.20838808769683492,
+      "top": 0.5451647183846972,
+      "bottom": 0.6232429967258537
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Beim Stra\u00dfenfest \u00b7 04"
+  },
+  {
+    "id": "mix-beach-crowd-plate-bf5e6a850965",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 210412234934629,
+    "reference": {
+      "left": 0.5729665071770335,
+      "right": 0.6106459330143541,
+      "top": 0.461211477151966,
+      "bottom": 0.6928799149840595
+    },
+    "head": {
+      "left": 0.5765929307904846,
+      "right": 0.5979976750454883,
+      "top": 0.461211477151966,
+      "bottom": 0.5088895294723361
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am belebten Strand \u00b7 01"
+  },
+  {
+    "id": "mix-beach-crowd-plate-41d103c15b42",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 72365966973762,
+    "reference": {
+      "left": 0.340311004784689,
+      "right": 0.35944976076555024,
+      "top": 0.16153028692879914,
+      "bottom": 0.281615302869288
+    },
+    "head": {
+      "left": 0.3467355167688748,
+      "right": 0.3576077678190354,
+      "top": 0.16153028692879914,
+      "bottom": 0.1862441397370644
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am belebten Strand \u00b7 02"
+  },
+  {
+    "id": "mix-beach-crowd-plate-74b99c299653",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 128340537742931,
+    "reference": {
+      "left": 0.5885167464114832,
+      "right": 0.6106459330143541,
+      "top": 0.20297555791710944,
+      "bottom": 0.3379383634431456
+    },
+    "head": {
+      "left": 0.595945088393198,
+      "right": 0.6085161286699463,
+      "top": 0.20297555791710944,
+      "bottom": 0.23075130399365534
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am belebten Strand \u00b7 03"
+  },
+  {
+    "id": "mix-beach-crowd-plate-59510003772f",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 98204427450159,
+    "reference": {
+      "left": 0.6686602870813397,
+      "right": 0.7194976076555024,
+      "top": 0.5504782146652497,
+      "bottom": 0.8660998937300743
+    },
+    "head": {
+      "left": 0.6735530808455197,
+      "right": 0.7024324976975087,
+      "top": 0.5504782146652497,
+      "bottom": 0.6154340932852036
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am belebten Strand \u00b7 04"
+  },
+  {
+    "id": "mix-garden-crowd-plate-5c0211a20b6a",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 101163955522410,
+    "reference": {
+      "left": 0.30861244019138756,
+      "right": 0.3415071770334928,
+      "top": 0.281615302869288,
+      "bottom": 0.48459086078639746
+    },
+    "head": {
+      "left": 0.3117783655682099,
+      "right": 0.3304650470606735,
+      "top": 0.281615302869288,
+      "bottom": 0.3233882753151169
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im botanischen Garten \u00b7 01"
+  },
+  {
+    "id": "mix-garden-crowd-plate-170dfd0f8d54",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 25348847668564,
+    "reference": {
+      "left": 0.42942583732057416,
+      "right": 0.4659090909090909,
+      "top": 0.46439957492029754,
+      "bottom": 0.6886291179596175
+    },
+    "head": {
+      "left": 0.4329371363748681,
+      "right": 0.4536623649392367,
+      "top": 0.46439957492029754,
+      "bottom": 0.5105466806065274
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im botanischen Garten \u00b7 02"
+  },
+  {
+    "id": "mix-garden-crowd-plate-15bc44551b67",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 23898344463207,
+    "reference": {
+      "left": 0.215311004784689,
+      "right": 0.2452153110047847,
+      "top": 0.21891604675876727,
+      "bottom": 0.4038257173219979
+    },
+    "head": {
+      "left": 0.2181891187636184,
+      "right": 0.23517701102949434,
+      "top": 0.21891604675876727,
+      "bottom": 0.25697100595025535
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im botanischen Garten \u00b7 03"
+  },
+  {
+    "id": "mix-garden-crowd-plate-a5c37aee0224",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 182258999624228,
+    "reference": {
+      "left": 0.7141148325358851,
+      "right": 0.7464114832535885,
+      "top": 0.3751328374070138,
+      "bottom": 0.5738575982996812
+    },
+    "head": {
+      "left": 0.7172231956331289,
+      "right": 0.7355701192802749,
+      "top": 0.3751328374070138,
+      "bottom": 0.4160309832047625
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Im botanischen Garten \u00b7 04"
+  },
+  {
+    "id": "mix-airport-crowd-plate-73a1024ba27f",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 127135365440127,
+    "reference": {
+      "left": 0.4461722488038278,
+      "right": 0.4874401913875598,
+      "top": 0.29011689691817216,
+      "bottom": 0.5451647183846972
+    },
+    "head": {
+      "left": 0.4600251027697284,
+      "right": 0.4834683940966372,
+      "top": 0.29011689691817216,
+      "bottom": 0.34260649580298325
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Flughafen \u00b7 01"
+  },
+  {
+    "id": "mix-airport-crowd-plate-3ce7fb91ee80",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 66967055756928,
+    "reference": {
+      "left": 0.5992822966507177,
+      "right": 0.6393540669856459,
+      "top": 0.3538788522848034,
+      "bottom": 0.6004250797024442
+    },
+    "head": {
+      "left": 0.6127336186176068,
+      "right": 0.6354973942538805,
+      "top": 0.3538788522848034,
+      "bottom": 0.4046187978734542
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Flughafen \u00b7 02"
+  },
+  {
+    "id": "mix-airport-crowd-plate-73e486300001",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 127425341030401,
+    "reference": {
+      "left": 0.8534688995215312,
+      "right": 0.8977272727272727,
+      "top": 0.36238044633368754,
+      "bottom": 0.6354941551540914
+    },
+    "head": {
+      "left": 0.8577285082103465,
+      "right": 0.8828705887638431,
+      "top": 0.36238044633368754,
+      "bottom": 0.4185880584728395
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Flughafen \u00b7 03"
+  },
+  {
+    "id": "mix-airport-crowd-plate-517328078a73",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 89555034671731,
+    "reference": {
+      "left": 0.5598086124401914,
+      "right": 0.604066985645933,
+      "top": 0.5791710945802337,
+      "bottom": 0.8522848034006376
+    },
+    "head": {
+      "left": 0.5640682211290069,
+      "right": 0.5892103016825033,
+      "top": 0.5791710945802337,
+      "bottom": 0.6353787067193857
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Flughafen \u00b7 04"
+  },
+  {
+    "id": "mix-airport-crowd-plate-fce862d05426",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 278075020432422,
+    "reference": {
+      "left": 0.6483253588516746,
+      "right": 0.6758373205741627,
+      "top": 0.23273113708820403,
+      "bottom": 0.40170031880977686
+    },
+    "head": {
+      "left": 0.6575605948289418,
+      "right": 0.6731894557135476,
+      "top": 0.23273113708820403,
+      "bottom": 0.2675054963493914
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Am Flughafen \u00b7 05"
+  },
+  {
+    "id": "mix-square-crowd-plate-0b47be23f0e0",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 12402760610016,
+    "reference": {
+      "left": 0.3570574162679426,
+      "right": 0.38098086124401914,
+      "top": 0.18809776833156217,
+      "bottom": 0.33581296493092455
+    },
+    "head": {
+      "left": 0.3593599074510861,
+      "right": 0.37295022126378685,
+      "top": 0.18809776833156217,
+      "bottom": 0.21849799435234862
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Rathausplatz \u00b7 01"
+  },
+  {
+    "id": "mix-square-crowd-plate-05e9e4589fc6",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 6502116532166,
+    "reference": {
+      "left": 0.4150717703349282,
+      "right": 0.4599282296650718,
+      "top": 0.5292242295430393,
+      "bottom": 0.8065887353878852
+    },
+    "head": {
+      "left": 0.4193889413033223,
+      "right": 0.4448707797021363,
+      "top": 0.5292242295430393,
+      "bottom": 0.5863066683302713
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Rathausplatz \u00b7 02"
+  },
+  {
+    "id": "mix-square-crowd-plate-df37c97c9675",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 245430696580725,
+    "reference": {
+      "left": 0.5143540669856459,
+      "right": 0.5424641148325359,
+      "top": 0.29861849096705634,
+      "bottom": 0.4729011689691817
+    },
+    "head": {
+      "left": 0.5170594941258395,
+      "right": 0.533028112855763,
+      "top": 0.29861849096705634,
+      "bottom": 0.3344863835383439
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Rathausplatz \u00b7 03"
+  },
+  {
+    "id": "mix-square-crowd-plate-58f74560d061",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 97819044139105,
+    "reference": {
+      "left": 0.7894736842105263,
+      "right": 0.8271531100478469,
+      "top": 0.42720510095642933,
+      "bottom": 0.6588735387885228
+    },
+    "head": {
+      "left": 0.8021219421793921,
+      "right": 0.8235266864343959,
+      "top": 0.42720510095642933,
+      "bottom": 0.4748831532767995
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Rathausplatz \u00b7 04"
+  },
+  {
+    "id": "mix-funfair-crowd-plate-c94d6a753672",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 221334335731314,
+    "reference": {
+      "left": 0.2595693779904306,
+      "right": 0.29126794258373206,
+      "top": 0.3985122210414453,
+      "bottom": 0.5929861849096706
+    },
+    "head": {
+      "left": 0.2702099759642384,
+      "right": 0.2882171417660669,
+      "top": 0.3985122210414453,
+      "bottom": 0.4385355401911138
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Jahrmarkt \u00b7 01"
+  },
+  {
+    "id": "mix-funfair-crowd-plate-c19d5ae03fa5",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 212881578672037,
+    "reference": {
+      "left": 0.6626794258373205,
+      "right": 0.7075358851674641,
+      "top": 0.5281615302869288,
+      "bottom": 0.8044633368756642
+    },
+    "head": {
+      "left": 0.6669965968057147,
+      "right": 0.6924784352045286,
+      "top": 0.5281615302869288,
+      "bottom": 0.5850252624121408
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Jahrmarkt \u00b7 02"
+  },
+  {
+    "id": "mix-funfair-crowd-plate-fae0275b97e3",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 275840639932387,
+    "reference": {
+      "left": 0.4043062200956938,
+      "right": 0.42284688995215314,
+      "top": 0.22848034006376194,
+      "bottom": 0.3421891604675877
+    },
+    "head": {
+      "left": 0.40609065076262996,
+      "right": 0.4166231439674731,
+      "top": 0.22848034006376194,
+      "bottom": 0.25188195289990695
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Jahrmarkt \u00b7 03"
+  },
+  {
+    "id": "mix-funfair-crowd-plate-e2f0901a81e6",
+    "mode": "sprint",
+    "width": 1568,
+    "height": 882,
+    "source_crop": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "source_id": 249522837684710,
+    "reference": {
+      "left": 0.7619617224880383,
+      "right": 0.7996411483253588,
+      "top": 0.49840595111583424,
+      "bottom": 0.7311370882040382
+    },
+    "head": {
+      "left": 0.7655881461014893,
+      "right": 0.786992890356493,
+      "top": 0.49840595111583424,
+      "bottom": 0.5463027100982244
+    },
+    "generated": true,
+    "procedural": true,
+    "title": "Auf dem Jahrmarkt \u00b7 04"
+  }
+]

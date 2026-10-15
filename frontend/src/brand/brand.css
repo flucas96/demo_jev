@@ -1,0 +1,12 @@
+@font-face{font-family:'Mona Sans';src:url('/brand/mona-sans.woff2') format('woff2');font-weight:200 900;font-display:swap}
+@font-face{font-family:'Eraneos Display';src:url('/brand/eraneos-display.woff2') format('woff2');font-weight:400;font-display:swap}
+.er-page{--er-paper:#fcf8f7;--er-sand:#f0ebe7;--er-ink:#202020;--er-orange:#ff6428;--er-muted:#766e69;--er-border:#e5e0de;--accent:#d94b14;color:var(--er-ink);background:var(--er-paper);min-height:100vh;font-family:'Mona Sans','Inter Variable',sans-serif;padding:20px 28px 0}
+.er-page h1,.er-page h2,.er-page h3,.er-page p{margin:0}
+.er-header{height:66px;background:#f0ebe7;display:flex;align-items:center;gap:24px;padding:0 25px;border-radius:5px;max-width:1600px;margin:auto}
+.er-logo{display:flex;align-items:center}.er-logo img{width:120px;height:auto}.er-header-divider{height:22px;width:1px;background:#cec2b9}.er-lab-label{font-size:13px;letter-spacing:.01em;color:#665f59}.er-header-link{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12px;color:#49413b}
+.er-button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid var(--er-ink);border-radius:4px;background:var(--er-ink);color:#fff;padding:12px 19px;font-weight:600;font-size:13px;min-height:44px;transition:background .15s,transform .15s}
+.er-button:hover:not(:disabled){background:#39332e;transform:translateY(-1px)}.er-button:disabled{opacity:.45}.er-button.secondary{background:transparent;color:var(--er-ink);border-color:#b4a79f}.er-button.secondary:hover{background:var(--er-sand)}
+.er-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:650;color:var(--er-muted)}.er-kicker>span{display:inline-block;width:6px;height:6px;background:var(--er-orange);margin-right:8px;border-radius:50%}
+.er-footer{border-top:1px solid var(--er-border);padding:20px 0;display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:11px;color:var(--er-muted);max-width:1440px;margin:32px auto 0}.er-footer a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.er-page{padding:12px 12px 0}.er-header{height:58px;padding:0 16px;gap:15px}.er-logo img{width:100px}.er-lab-label{font-size:11px}.er-header-link{font-size:11px}.er-footer{align-items:flex-start;font-size:10px}}
+.waldo-modal,.reference-modal{--er-ink:#202020;--er-sand:#f0ebe7;--er-border:#e5e0de;--er-muted:#766e69;--er-orange:#ff6428}

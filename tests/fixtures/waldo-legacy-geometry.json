@@ -1,0 +1,812 @@
+[
+  {
+    "id": "scene-01-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.3246525821596244,
+      "right": 0.383680751173709,
+      "top": 0.5509247910863511,
+      "bottom": 0.7561727019498607
+    },
+    "head": {
+      "left": 0.33941001564945233,
+      "right": 0.378472613458529,
+      "top": 0.5555543175487464,
+      "bottom": 0.6774679665738161
+    },
+    "source_id": 1,
+    "source_crop": [
+      499,
+      321,
+      639,
+      359
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-01-classic",
+    "mode": "classic",
+    "width": 1568,
+    "height": 958,
+    "reference": {
+      "left": 0.34494775390625,
+      "right": 0.363365234375,
+      "top": 0.4146938449240608,
+      "bottom": 0.4735939248601119
+    },
+    "head": {
+      "left": 0.34955224609375,
+      "right": 0.361740234375,
+      "top": 0.4160223820943245,
+      "bottom": 0.4510079936051159
+    },
+    "source_id": 1,
+    "source_crop": [
+      0,
+      0,
+      2048,
+      1251
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-02-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.7482631578947367,
+      "right": 0.8368048245614035,
+      "top": 0.59259375,
+      "bottom": 0.78858203125
+    },
+    "head": {
+      "left": 0.7708333333333334,
+      "right": 0.8107631578947367,
+      "top": 0.59259375,
+      "bottom": 0.67901171875
+    },
+    "source_id": 2,
+    "source_crop": [
+      181,
+      208,
+      456,
+      256
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-02-classic",
+    "mode": "classic",
+    "width": 1024,
+    "height": 768,
+    "reference": {
+      "left": 0.50996875,
+      "right": 0.5493974609375,
+      "top": 0.46836458333333336,
+      "bottom": 0.5336940104166666
+    },
+    "head": {
+      "left": 0.52001953125,
+      "right": 0.53780078125,
+      "top": 0.46836458333333336,
+      "bottom": 0.49717057291666666
+    },
+    "source_id": 2,
+    "source_crop": [
+      0,
+      0,
+      1024,
+      768
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-03-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.6428888933788617,
+      "right": 0.6933202675125777,
+      "top": 0.7365793207492951,
+      "bottom": 0.8400294545519855
+    },
+    "head": {
+      "left": 0.6458333333333334,
+      "right": 0.6901045197740113,
+      "top": 0.7422839195979899,
+      "bottom": 0.8317889447236182
+    },
+    "source_id": 3,
+    "source_crop": [
+      935,
+      170,
+      708,
+      398
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-03-classic",
+    "mode": "classic",
+    "width": 1568,
+    "height": 1031,
+    "reference": {
+      "left": 0.6787916682188643,
+      "right": 0.6962259518549341,
+      "top": 0.34409997745781534,
+      "bottom": 0.3746892443623256
+    },
+    "head": {
+      "left": 0.6798095703125,
+      "right": 0.6951142578125,
+      "top": 0.34578677563150073,
+      "bottom": 0.3722526002971768
+    },
+    "source_id": 3,
+    "source_crop": [
+      0,
+      0,
+      2048,
+      1346
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-04-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.48871500000000023,
+      "right": 0.5520825000000003,
+      "top": 0.5570977777777777,
+      "bottom": 0.7175911111111112
+    },
+    "head": {
+      "left": 0.4895825000000002,
+      "right": 0.5442700000000003,
+      "top": 0.55864,
+      "bottom": 0.6944444444444444
+    },
+    "source_id": 4,
+    "source_crop": [
+      1290,
+      154,
+      400,
+      225
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-04-classic",
+    "mode": "classic",
+    "width": 1568,
+    "height": 974,
+    "reference": {
+      "left": 0.7253349609375,
+      "right": 0.73771142578125,
+      "top": 0.21961242138364778,
+      "bottom": 0.24800157232704403
+    },
+    "head": {
+      "left": 0.72550439453125,
+      "right": 0.736185546875,
+      "top": 0.21988522012578618,
+      "bottom": 0.2439072327044025
+    },
+    "source_id": 4,
+    "source_crop": [
+      0,
+      0,
+      2048,
+      1272
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-05-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.5156257309941522,
+      "right": 0.5729166666666666,
+      "top": 0.6666675324675324,
+      "bottom": 0.827161038961039
+    },
+    "head": {
+      "left": 0.5173611111111112,
+      "right": 0.5685760233918128,
+      "top": 0.6666675324675324,
+      "bottom": 0.7762337662337663
+    },
+    "source_id": 6,
+    "source_crop": [
+      1364,
+      155,
+      684,
+      385
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-05-classic",
+    "mode": "classic",
+    "width": 1568,
+    "height": 1113,
+    "reference": {
+      "left": 0.8382265625,
+      "right": 0.85736083984375,
+      "top": 0.28312723521320493,
+      "bottom": 0.32562379642365885
+    },
+    "head": {
+      "left": 0.83880615234375,
+      "right": 0.8559111328125,
+      "top": 0.28312723521320493,
+      "bottom": 0.3121389270976616
+    },
+    "source_id": 6,
+    "source_crop": [
+      0,
+      0,
+      2048,
+      1454
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-06-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.47743125000000003,
+      "right": 0.5434020833333334,
+      "top": 0.5154333333333334,
+      "bottom": 0.8348777777777779
+    },
+    "head": {
+      "left": 0.4817708333333333,
+      "right": 0.5416666666666666,
+      "top": 0.5169740740740739,
+      "bottom": 0.6574074074074074
+    },
+    "source_id": 9,
+    "source_crop": [
+      0,
+      595,
+      480,
+      270
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-06-classic",
+    "mode": "classic",
+    "width": 1298,
+    "height": 951,
+    "reference": {
+      "left": 0.17655392912172574,
+      "right": 0.20094992295839756,
+      "top": 0.7719947423764458,
+      "bottom": 0.8626887486855942
+    },
+    "head": {
+      "left": 0.17815870570107858,
+      "right": 0.20030816640986132,
+      "top": 0.7724321766561514,
+      "bottom": 0.8123028391167192
+    },
+    "source_id": 9,
+    "source_crop": [
+      0,
+      0,
+      1298,
+      951
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-07-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.375,
+      "right": 0.44444500000000003,
+      "top": 0.6049377777777782,
+      "bottom": 0.7962977777777774
+    },
+    "head": {
+      "left": 0.375,
+      "right": 0.42361000000000004,
+      "top": 0.6049377777777782,
+      "bottom": 0.7253066666666665
+    },
+    "source_id": 11,
+    "source_crop": [
+      311,
+      1400,
+      400,
+      225
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-07-classic",
+    "mode": "classic",
+    "width": 1568,
+    "height": 1014,
+    "reference": {
+      "left": 0.163012729844413,
+      "right": 0.17283521923620934,
+      "top": 0.8403233041575493,
+      "bottom": 0.8638769146608315
+    },
+    "head": {
+      "left": 0.163012729844413,
+      "right": 0.16988826025459688,
+      "top": 0.8403233041575493,
+      "bottom": 0.8551389496717724
+    },
+    "source_id": 11,
+    "source_crop": [
+      0,
+      0,
+      2828,
+      1828
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-08-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.22482749999999996,
+      "right": 0.31944500000000003,
+      "top": 0.7469155555555554,
+      "bottom": 0.9938266666666666
+    },
+    "head": {
+      "left": 0.24305499999999994,
+      "right": 0.29079750000000004,
+      "top": 0.7469155555555554,
+      "bottom": 0.8518533333333332
+    },
+    "source_id": 12,
+    "source_crop": [
+      262,
+      111,
+      400,
+      225
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-08-classic",
+    "mode": "classic",
+    "width": 1291,
+    "height": 953,
+    "reference": {
+      "left": 0.2726034082106894,
+      "right": 0.3019194422927963,
+      "top": 0.2928184679958027,
+      "bottom": 0.3511133263378804
+    },
+    "head": {
+      "left": 0.2782509682416731,
+      "right": 0.29304337722695584,
+      "top": 0.2928184679958027,
+      "bottom": 0.3175939139559286
+    },
+    "source_id": 12,
+    "source_crop": [
+      0,
+      0,
+      1291,
+      953
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-09-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.4279525000000001,
+      "right": 0.5225700000000001,
+      "top": 0.54784,
+      "bottom": 0.7268533333333332
+    },
+    "head": {
+      "left": 0.46007000000000003,
+      "right": 0.49566000000000004,
+      "top": 0.54784,
+      "bottom": 0.6157422222222221
+    },
+    "source_id": 13,
+    "source_crop": [
+      745,
+      151,
+      400,
+      225
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-09-classic",
+    "mode": "classic",
+    "width": 1280,
+    "height": 864,
+    "reference": {
+      "left": 0.71576640625,
+      "right": 0.745334375,
+      "top": 0.3174351851851852,
+      "bottom": 0.3640532407407407
+    },
+    "head": {
+      "left": 0.725803125,
+      "right": 0.736925,
+      "top": 0.3174351851851852,
+      "bottom": 0.3351180555555555
+    },
+    "source_id": 13,
+    "source_crop": [
+      0,
+      0,
+      1280,
+      864
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-10-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.3420138888888889,
+      "right": 0.4704861111111111,
+      "top": 0.1712962962962963,
+      "bottom": 0.5277777777777778
+    },
+    "head": {
+      "left": 0.3428819444444444,
+      "right": 0.4123263888888889,
+      "top": 0.1712962962962963,
+      "bottom": 0.30709876543209874
+    },
+    "source_id": 14,
+    "source_crop": [
+      0,
+      1823,
+      576,
+      324
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-10-classic",
+    "mode": "classic",
+    "width": 1139,
+    "height": 1568,
+    "reference": {
+      "left": 0.11588235294117646,
+      "right": 0.15941176470588236,
+      "top": 0.8027777777777778,
+      "bottom": 0.8521367521367521
+    },
+    "head": {
+      "left": 0.1161764705882353,
+      "right": 0.13970588235294118,
+      "top": 0.8027777777777778,
+      "bottom": 0.8215811965811965
+    },
+    "source_id": 14,
+    "source_crop": [
+      0,
+      0,
+      1700,
+      2340
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-11-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.2578125,
+      "right": 0.31944500000000003,
+      "top": 0.4583333333333333,
+      "bottom": 0.677471111111111
+    },
+    "head": {
+      "left": 0.2760424999999999,
+      "right": 0.3046875,
+      "top": 0.4583333333333333,
+      "bottom": 0.5401244444444445
+    },
+    "source_id": 15,
+    "source_crop": [
+      188,
+      325,
+      400,
+      225
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-11-classic",
+    "mode": "classic",
+    "width": 1568,
+    "height": 986,
+    "reference": {
+      "left": 0.181953125,
+      "right": 0.19736125000000002,
+      "top": 0.42557157057654077,
+      "bottom": 0.4745834990059642
+    },
+    "head": {
+      "left": 0.18651062499999999,
+      "right": 0.193671875,
+      "top": 0.42557157057654077,
+      "bottom": 0.4438648111332008
+    },
+    "source_id": 15,
+    "source_crop": [
+      0,
+      0,
+      1600,
+      1006
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-12-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.4878478260869565,
+      "right": 0.5885410628019324,
+      "top": 0.23611158798283266,
+      "bottom": 0.44135622317596573
+    },
+    "head": {
+      "left": 0.5190966183574879,
+      "right": 0.5503478260869565,
+      "top": 0.23611158798283266,
+      "bottom": 0.31327038626609427
+    },
+    "source_id": 19,
+    "source_crop": [
+      123,
+      568,
+      414,
+      233
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-12-classic",
+    "mode": "classic",
+    "width": 1280,
+    "height": 864,
+    "reference": {
+      "left": 0.25388203125,
+      "right": 0.28645,
+      "top": 0.7210810185185186,
+      "bottom": 0.7764305555555556
+    },
+    "head": {
+      "left": 0.2639890625,
+      "right": 0.274096875,
+      "top": 0.7210810185185186,
+      "bottom": 0.7418888888888888
+    },
+    "source_id": 19,
+    "source_crop": [
+      0,
+      0,
+      1280,
+      864
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-13-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.3151050000000001,
+      "right": 0.3671875,
+      "top": 0.75,
+      "bottom": 0.8950622222222218
+    },
+    "head": {
+      "left": 0.32378500000000004,
+      "right": 0.3619800000000001,
+      "top": 0.75,
+      "bottom": 0.8626533333333333
+    },
+    "source_id": 21,
+    "source_crop": [
+      599,
+      887,
+      400,
+      225
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-13-classic",
+    "mode": "classic",
+    "width": 1568,
+    "height": 984,
+    "reference": {
+      "left": 0.40916591422121895,
+      "right": 0.4209226862302483,
+      "top": 0.9494154676258992,
+      "bottom": 0.9787670863309351
+    },
+    "head": {
+      "left": 0.4111252821670429,
+      "right": 0.41974717832957115,
+      "top": 0.9494154676258992,
+      "bottom": 0.9722095323741007
+    },
+    "source_id": 21,
+    "source_crop": [
+      0,
+      0,
+      1772,
+      1112
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-14-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.28298500000000004,
+      "right": 0.31944500000000003,
+      "top": 0.5555555555555556,
+      "bottom": 0.70216
+    },
+    "head": {
+      "left": 0.28298500000000004,
+      "right": 0.31683999999999996,
+      "top": 0.5555555555555556,
+      "bottom": 0.6358044444444445
+    },
+    "source_id": 22,
+    "source_crop": [
+      358,
+      0,
+      400,
+      225
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-14-classic",
+    "mode": "classic",
+    "width": 960,
+    "height": 671,
+    "reference": {
+      "left": 0.49082708333333336,
+      "right": 0.5060187500000001,
+      "top": 0.18628912071535023,
+      "bottom": 0.23544858420268255
+    },
+    "head": {
+      "left": 0.49082708333333336,
+      "right": 0.5049333333333333,
+      "top": 0.18628912071535023,
+      "bottom": 0.21319821162444114
+    },
+    "source_id": 22,
+    "source_crop": [
+      0,
+      0,
+      960,
+      671
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-15-sprint",
+    "mode": "sprint",
+    "width": 1152,
+    "height": 648,
+    "reference": {
+      "left": 0.7960069444444444,
+      "right": 0.8472222222222222,
+      "top": 0.24691358024691357,
+      "bottom": 0.4675925925925926
+    },
+    "head": {
+      "left": 0.7986111111111112,
+      "right": 0.8394097222222222,
+      "top": 0.24691358024691357,
+      "bottom": 0.375
+    },
+    "source_id": 24,
+    "source_crop": [
+      1570,
+      0,
+      432,
+      243
+    ],
+    "generated": false,
+    "title": ""
+  },
+  {
+    "id": "scene-15-classic",
+    "mode": "classic",
+    "width": 1568,
+    "height": 1001,
+    "reference": {
+      "left": 0.9559815184815185,
+      "right": 0.967032967032967,
+      "top": 0.046948356807511735,
+      "bottom": 0.08890845070422536
+    },
+    "head": {
+      "left": 0.9565434565434565,
+      "right": 0.9653471528471529,
+      "top": 0.046948356807511735,
+      "bottom": 0.07130281690140845
+    },
+    "source_id": 24,
+    "source_crop": [
+      0,
+      0,
+      2002,
+      1278
+    ],
+    "generated": false,
+    "title": ""
+  }
+]

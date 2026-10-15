@@ -1,0 +1,318 @@
+{
+  "seed": 20261015,
+  "sprite": "waldo-sprite.png",
+  "head": [
+    41,
+    0,
+    283,
+    305
+  ],
+  "backgrounds": [
+    {
+      "slug": "station-plate",
+      "title": "Am Bahnhof",
+      "slots": [
+        {
+          "x": 410,
+          "feet": 750,
+          "height": 320
+        },
+        {
+          "x": 510,
+          "feet": 360,
+          "height": 170
+        },
+        {
+          "x": 840,
+          "feet": 590,
+          "height": 270
+        },
+        {
+          "x": 1220,
+          "feet": 590,
+          "height": 220
+        },
+        {
+          "x": 950,
+          "feet": 905,
+          "height": 320
+        }
+      ]
+    },
+    {
+      "slug": "market-plate",
+      "title": "Auf dem Markt",
+      "slots": [
+        {
+          "x": 1210,
+          "feet": 580,
+          "height": 280
+        },
+        {
+          "x": 445,
+          "feet": 490,
+          "height": 230
+        },
+        {
+          "x": 850,
+          "feet": 730,
+          "height": 290
+        },
+        {
+          "x": 600,
+          "feet": 735,
+          "height": 290
+        }
+      ]
+    },
+    {
+      "slug": "park-plate",
+      "title": "Im Stadtpark",
+      "slots": [
+        {
+          "x": 700,
+          "feet": 760,
+          "height": 260
+        },
+        {
+          "x": 535,
+          "feet": 545,
+          "height": 210
+        },
+        {
+          "x": 1085,
+          "feet": 220,
+          "height": 150
+        },
+        {
+          "x": 1445,
+          "feet": 705,
+          "height": 245
+        },
+        {
+          "x": 830,
+          "feet": 845,
+          "height": 280
+        }
+      ]
+    },
+    {
+      "slug": "museum-plate",
+      "title": "Im Museum",
+      "slots": [
+        {
+          "x": 1240,
+          "feet": 345,
+          "height": 240
+        },
+        {
+          "x": 350,
+          "feet": 315,
+          "height": 210
+        },
+        {
+          "x": 580,
+          "feet": 610,
+          "height": 250
+        },
+        {
+          "x": 1290,
+          "feet": 845,
+          "height": 310
+        },
+        {
+          "x": 760,
+          "feet": 885,
+          "height": 300
+        }
+      ]
+    },
+    {
+      "slug": "harbor-plate",
+      "title": "Am Hafen",
+      "slots": [
+        {
+          "x": 1280,
+          "feet": 815,
+          "height": 340
+        },
+        {
+          "x": 570,
+          "feet": 435,
+          "height": 235
+        },
+        {
+          "x": 932,
+          "feet": 610,
+          "height": 290
+        },
+        {
+          "x": 650,
+          "feet": 795,
+          "height": 320
+        }
+      ]
+    },
+    {
+      "slug": "festival-plate",
+      "title": "Beim Straßenfest",
+      "slots": [
+        {
+          "x": 485,
+          "feet": 460,
+          "height": 275
+        },
+        {
+          "x": 710,
+          "feet": 715,
+          "height": 300
+        },
+        {
+          "x": 1245,
+          "feet": 700,
+          "height": 295
+        },
+        {
+          "x": 330,
+          "feet": 870,
+          "height": 360
+        }
+      ]
+    },
+    {
+      "slug": "beach-crowd-plate",
+      "title": "Am belebten Strand",
+      "slots": [
+        {
+          "x": 992,
+          "feet": 650,
+          "height": 220
+        },
+        {
+          "x": 585,
+          "feet": 265,
+          "height": 115
+        },
+        {
+          "x": 1000,
+          "feet": 320,
+          "height": 130
+        },
+        {
+          "x": 1162,
+          "feet": 815,
+          "height": 300
+        }
+      ]
+    },
+    {
+      "slug": "garden-crowd-plate",
+      "title": "Im botanischen Garten",
+      "slots": [
+        {
+          "x": 546,
+          "feet": 454,
+          "height": 190
+        },
+        {
+          "x": 748,
+          "feet": 650,
+          "height": 210
+        },
+        {
+          "x": 385,
+          "feet": 380,
+          "height": 175
+        },
+        {
+          "x": 1220,
+          "feet": 540,
+          "height": 185
+        }
+      ]
+    },
+    {
+      "slug": "airport-crowd-plate",
+      "title": "Am Flughafen",
+      "slots": [
+        {
+          "x": 780,
+          "feet": 515,
+          "height": 240
+        },
+        {
+          "x": 1038,
+          "feet": 565,
+          "height": 230
+        },
+        {
+          "x": 1465,
+          "feet": 600,
+          "height": 260
+        },
+        {
+          "x": 975,
+          "feet": 800,
+          "height": 260
+        },
+        {
+          "x": 1110,
+          "feet": 380,
+          "height": 160
+        }
+      ]
+    },
+    {
+      "slug": "square-crowd-plate",
+      "title": "Auf dem Rathausplatz",
+      "slots": [
+        {
+          "x": 620,
+          "feet": 315,
+          "height": 140
+        },
+        {
+          "x": 735,
+          "feet": 760,
+          "height": 260
+        },
+        {
+          "x": 885,
+          "feet": 445,
+          "height": 165
+        },
+        {
+          "x": 1350,
+          "feet": 620,
+          "height": 220
+        }
+      ]
+    },
+    {
+      "slug": "funfair-crowd-plate",
+      "title": "Auf dem Jahrmarkt",
+      "slots": [
+        {
+          "x": 460,
+          "feet": 560,
+          "height": 180
+        },
+        {
+          "x": 1145,
+          "feet": 755,
+          "height": 260
+        },
+        {
+          "x": 695,
+          "feet": 320,
+          "height": 110
+        },
+        {
+          "x": 1305,
+          "feet": 690,
+          "height": 220
+        }
+      ]
+    }
+  ]
+}
