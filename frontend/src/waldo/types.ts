@@ -34,3 +34,6 @@ export interface Run {
   calls: number; completed: number; failures: number; cost_usd: number | null; cost_partial: boolean;
   cost_basis: string; average_ms: number | null; status: 'completed' | 'stopped' | 'error' | 'disconnected';
 }
+
+export interface ModelBenchmark { model: string; label: string; status: 'running' | 'completed' | 'error'; run: Run | null; error: string | null }
+export interface BenchmarkReport { id: string; created_at: string; finished_at: string | null; duration: number; seed: number; deck: string; parallel: boolean; results: ModelBenchmark[] }

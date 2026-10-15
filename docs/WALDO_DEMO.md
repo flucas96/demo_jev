@@ -59,6 +59,16 @@ Each provider logo represents one completed model run; inspect it by hover or ke
 focus. Unknown metrics are omitted, and partial
 costs are marked. Charts use the most recent 30 completed runs at the selected duration.
 Humans are absent from these model charts because their response time is not recorded.
+Use **Points / Accuracy** to change both charts' vertical axis. Accuracy uses scored hits
+and misses; unanswered and failed transport requests are excluded.
+
+**Show full model benchmarks** opens the saved 60-second benchmark snapshot from the
+setup or results screen. Every completed model has a numbered point, provider logo, and
+separate label. Hover, focus, or select a model to trace it across both charts. Failed
+models remain listed without fabricated scores. Opening this view never makes paid calls.
+The measurements were launched in parallel on the same course, with one request at a
+time per model. [Results, methodology, and rerun commands](benchmarks/README.md) are
+published alongside the raw snapshot.
 
 This interactive comparison has limitations: the human can recognize images in round two,
 different comparisons use different shuffled orders, and gateway caching affects costs

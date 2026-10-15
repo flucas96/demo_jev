@@ -13,7 +13,7 @@ from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import FileResponse, Response, StreamingResponse
 
-from . import waldo, waldo_gateway
+from . import waldo, waldo_benchmarks, waldo_gateway
 from .batch import BatchStreamingResponse, stream_batch
 from .batch_models import BatchRequest, JiraTicket
 from .catalog import SCENARIOS
@@ -218,6 +218,11 @@ def create_app(
     def waldo_leaderboard() -> list[Run]:
         """Return server-scored runs, including explicitly marked stopped or failed attempts."""
         return history.runs() if history else []
+
+    @application.get("/api/waldo/benchmarks")
+    def waldo_model_benchmarks() -> waldo_benchmarks.BenchmarkReport | None:
+        """Serve the measured model snapshot without running or charging for new inference."""
+        return waldo_benchmarks.read_report()
 
     @application.post("/api/waldo/comparisons")
     async def create_waldo_comparison(

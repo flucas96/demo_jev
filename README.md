@@ -2,7 +2,48 @@
 
 A Jira-first developer demo for turning text into typed decisions with [Jev](https://typesafe.ai/).
 Python owns inference, validation, and application policy. React and Mantine provide the
-workbench. All model results are live; nothing silently substitutes canned answers.
+workbench. Games use live model responses. The full benchmark view displays a separately
+measured, saved snapshot; opening it makes no model calls.
+
+## Watch the game
+
+[![Play the Waldo game demo](docs/demo/waldo-game-poster.jpg)](https://github.com/flucas96/demo_jev/raw/refs/heads/main/docs/demo/waldo-game-demo.mp4)
+
+[▶ Watch the 90-second walkthrough](https://github.com/flucas96/demo_jev/raw/refs/heads/main/docs/demo/waldo-game-demo.mp4):
+**30 seconds against Claude Opus 5.5 → 30 seconds against Jev → leaderboard and charts.**
+Real model responses, speed, and costs. Player clicks are automated for the recording;
+this is a product walkthrough, not a human-performance benchmark.
+[Video details](docs/demo/README.md).
+
+<!-- WALDO-BENCHMARKS:START -->
+## Measured model benchmarks
+
+Measured **15 October 2026, 13:22 CEST**: **13 of 15 models** returned results. One **60-second** run per model, launched in parallel on the same shuffled course. No completed measurement for Gemini 3 Pro, Gemini 2.5 Pro; their recorded errors remain in the raw data, without invented scores or chart points.
+
+| Model | Points | Accuracy | Avg. response | Cost | Calls |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| **Jev** | **44** | 98% | 843 ms | $0.007696 | 47 |
+| **Claude Sonnet 5.5** | **14** | 100% | 3,590 ms | $0.085044 | 15 |
+| **Claude Opus 5.5** | **10** | 100% | 5,049 ms | $0.122255 | 11 |
+| **GPT-6 Sol** | **8** | 100% | 6,663 ms | $0.044662 | 9 |
+| **Claude Sonnet 5** | **3** | 60% | 3,650 ms | $0.089093 | 16 |
+| **GPT-6 Luna** | **0** | 50% | 6,468 ms | $0.002582 | 9 |
+| **Claude Opus 4.5** | **-3** | 36% | 5,007 ms | $0.118866 | 12 |
+| **Claude Opus 5** | **-4** | 36% | 3,976 ms | $0.210657 | 15 |
+| **GPT-5.1** | **-8** | 17% | 4,782 ms | $0.020134 | 13 |
+| **Gemini 3.8 Flash** | **-9** | 0% | 6,395 ms | $0.019883 | 10 |
+| **Claude Sonnet 4.5** | **-10** | 14% | 4,098 ms | $0.113145 | 15 |
+| **Gemini 3.5 Flash** | **-12** | 0% | 4,856 ms | $0.057090 | 13 |
+| **Claude Haiku 4.5** | **-17** | 5% | 3,024 ms | $0.041272 | 20 |
+| Gemini 3 Pro | — | Unavailable | — | Unknown | 1 |
+| Gemini 2.5 Pro | — | Unavailable | — | Unknown | 1 |
+
+![Points vs. response time](docs/benchmarks/score-time.png)
+
+![Points vs. cost](docs/benchmarks/score-cost.png)
+
+[Method, limitations, and raw results](docs/benchmarks/README.md). Open **Show full model benchmarks** in the app for interactive charts.
+<!-- WALDO-BENCHMARKS:END -->
 
 ## Quick start
 
