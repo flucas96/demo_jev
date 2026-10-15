@@ -4,36 +4,77 @@ A Jira-first developer demo for turning text into typed decisions with [Jev](htt
 Python owns inference, validation, and application policy. React and Mantine provide the
 workbench. All model results are live; nothing silently substitutes canned answers.
 
-## Run locally
+## Quick start
 
-Requirements: [uv](https://docs.astral.sh/uv/) and Node.js 22.12+ (or a newer supported LTS).
-The project uses Python 3.14; uv can install it automatically.
+You need Git, [uv](https://docs.astral.sh/uv/), [Node.js](https://nodejs.org/) 22.12+
+(or a newer supported LTS, including npm), and a TypeSafe API key with access to Jev.
+Python 3.14 is installed automatically by uv if needed. No database, Docker, or Jira
+account is required. The 60 Waldo images are included; you do not need to generate them.
+
+### Download and install
 
 ```sh
-uv sync
+git clone https://github.com/flucas96/demo_jev.git
+cd demo_jev
+uv sync --locked --python 3.14
 npm --prefix frontend ci
-test -f .env || cp .env.example .env
+cp .env.example .env
 ```
 
-Set `TYPESAFE_API_KEY` in `.env`. If `.env` is already configured, keep it rather than
-replacing it. The key stays in Python; it is never embedded in the frontend bundle,
-returned by the API, or included in the request inspector. `.env` is ignored by Git.
+The copy command is for a fresh checkout. Keep an existing `.env` when updating.
+Open `.env` in your editor and replace the placeholder with your own key:
 
-```sh
-uv run python scripts/dev.py
+```dotenv
+TYPESAFE_API_KEY=your-typesafe-api-key
+TYPESAFE_MODEL=jev-latest
 ```
 
-Open [the demo](http://127.0.0.1:5173) or [the Python API docs](http://127.0.0.1:8000/docs).
-Ctrl+C stops both development servers.
+The key stays on the Python server. `.env` is ignored by Git and is never included in
+the browser bundle. Waldo pins `jev-1.14.0` for image and box support; the text demos
+use `TYPESAFE_MODEL`. Starting an AI game or evaluating tickets makes paid API calls.
 
-To serve the compiled frontend and Python API from a single process:
+### Start the demo
+
+Run these commands from the repository root:
 
 ```sh
 npm --prefix frontend run build
 uv run jev-demo
 ```
 
-Then open [localhost:8000](http://127.0.0.1:8000).
+Open **[http://127.0.0.1:8000](http://127.0.0.1:8000)**. Keep the terminal running;
+press **Ctrl+C** to stop the server.
+
+| Demo | Address |
+| --- | --- |
+| Demo hub | [localhost:8000](http://127.0.0.1:8000/) |
+| Waldo: human vs Jev | [localhost:8000/waldo](http://127.0.0.1:8000/waldo) |
+| Jira triage | [localhost:8000/#queue](http://127.0.0.1:8000/#queue) |
+| Lantern Run | [localhost:8000/#runner](http://127.0.0.1:8000/#runner) |
+| Snake | [localhost:8000/#snake](http://127.0.0.1:8000/#snake) |
+| Python API docs | [localhost:8000/docs](http://127.0.0.1:8000/docs) |
+
+### Development mode
+
+For automatic reloads while editing, stop the single-process server and run:
+
+```sh
+uv run python scripts/dev.py
+```
+
+Open [localhost:5173](http://127.0.0.1:5173). This starts the React development server
+on port 5173 and the Python API on port 8000. Ctrl+C stops both.
+
+### Troubleshooting
+
+- **Missing API key:** check `.env` in the repository root and restart the server after
+  editing it. `/api/health` reports whether a key is configured, not whether it is valid.
+- **TypeSafe rejects the key or model:** check your key, account access, and available
+  credit. Waldo requires image and box access for `jev-1.14.0`.
+- **The homepage returns 404:** run `npm --prefix frontend run build`, then restart
+  `uv run jev-demo`. The backend discovers the built frontend at startup.
+- **Port already in use:** stop the previous demo process before starting another one.
+- **Changes do not appear:** rebuild and restart, or use development mode.
 
 ## Spot on: human vs Jev
 
