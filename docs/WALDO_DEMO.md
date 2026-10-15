@@ -9,7 +9,7 @@ warm paper, dark ink, and orange accents.
 
 Click Waldo on the human board. A hit earns +1 and a miss −1; three misses or an
 explicit skip advance the image. Arrow keys position a keyboard cursor; Enter submits it.
-In the playground, select any gateway vision model (default Claude Opus 5.5) or Jev for
+In the playground, select any gateway vision model (default Claude Opus 5) or Jev for
 a standalone round. Changing the model ends the current round and keeps its partial record.
 The result screen offers **Choose another model**.
 

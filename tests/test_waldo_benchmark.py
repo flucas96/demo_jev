@@ -77,7 +77,7 @@ def test_gateway_uses_exact_image_and_real_usage(cost: str | None) -> None:
     assert result.box == Box(left=0.1, top=0.2, right=0.3, bottom=0.4)
     assert result.confidence is None
     assert result.usage == Usage(input_tokens=2000, output_tokens=40)
-    assert result.cost_usd == pytest.approx(float(cost) if cost else 0.00968)
+    assert result.cost_usd == pytest.approx(float(cost) if cost else 0.0121)
     assert result.cost_basis == ("gateway" if cost else "estimate")
 
 
@@ -266,7 +266,7 @@ def test_normal_mode_selects_gateway_directly_without_a_second_round(tmp_path: P
     ):
         first = TypeAdapter(dict[str, object]).validate_python(ws.receive_json())
         assert first["type"] == "state"
-        assert first["model_label"] == "Claude Opus 5.5"
+        assert first["model_label"] == "Claude Opus 5"
         assert first["comparison_id"] is None
         ws.send_json({"type": "stop"})
         while True:

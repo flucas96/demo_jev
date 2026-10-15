@@ -13,7 +13,7 @@ function remember(id: string | null) {
 /** Share one live game lifecycle between the playground and guided presentation. */
 export default function useWaldoGame(pairedMode = true) {
   const [duration, setDuration] = useState<number | string>(60);
-  const [model, setModel] = useState('claude-opus-5-5');
+  const [model, setModel] = useState('claude-opus-5');
   const [models, setModels] = useState<ModelCatalog | null>(null);
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [comparison, setComparison] = useState<Comparison | null>(null);
@@ -49,7 +49,7 @@ export default function useWaldoGame(pairedMode = true) {
       .then(async ([images, choices, history]) => {
         if (controller.signal.aborted) return;
         setCatalog(images); setModels(choices); setRuns(history);
-        if (!choices.models.some(option => option.id === choices.default_model) && choices.models[0]) setModel(choices.models[0].id);
+        setModel(choices.models.find(option => option.id === choices.default_model)?.id ?? choices.models[0]?.id ?? '');
         let saved: string | null = null;
         try { saved = pairedMode ? sessionStorage.getItem(recoveryKey) : null; } catch { /* Recovery is optional. */ }
         if (saved) {

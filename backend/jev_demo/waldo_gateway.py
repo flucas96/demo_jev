@@ -13,7 +13,7 @@ from .models import Usage
 from .service import JevError, Settings
 from .waldo_geometry import Box
 
-DEFAULT_MODEL = "claude-opus-5-5"
+DEFAULT_MODEL = "claude-opus-5"
 PROMPT = (
     "Where is Waldo in this image? Return only JSON with left, top, right, bottom: "
     "the bounding box of Waldo, normalized to [0,1] relative to the full image. "
@@ -34,8 +34,8 @@ class ModelOption(BaseModel):
 GATEWAY_MODELS = [
     ModelOption(id=id, label=label, input_price=input_price, output_price=output_price)
     for id, label, input_price, output_price in [
-        (DEFAULT_MODEL, "Claude Opus 5.5", 4.4, 22.0),
-        ("claude-opus-5", "Claude Opus 5", 5.5, 27.5),
+        (DEFAULT_MODEL, "Claude Opus 5", 5.5, 27.5),
+        ("claude-opus-5-5", "Claude Opus 5.5", 4.4, 22.0),
         ("claude-opus-4-5", "Claude Opus 4.5", 5.5, 27.5),
         ("claude-sonnet-5-5", "Claude Sonnet 5.5", 2.2, 11.0),
         ("claude-sonnet-5", "Claude Sonnet 5", 2.2, 11.0),

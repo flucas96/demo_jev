@@ -58,7 +58,7 @@ export default function WaldoPresentation() {
     <header className="presentation-header"><a href="/" aria-label="Eraneos demo home"><img src="/brand/eraneos.svg" alt="Eraneos" /></a><a href="/waldo" aria-label="Return to playground"><ArrowLeft size={15} />Playground</a></header>
     <section className="presentation-intro" ref={intro}>
       <div className="intro-copy"><h1>Find Waldo.</h1>
-        <div className="intro-rivals"><span><b>01</b><ModelIdentity model={game.model} label={game.selected?.label ?? 'Claude Opus 5.5'} size={31} /></span>{game.paired && <><ArrowRight size={22} /><span><b>02</b><ModelIdentity model={JEV} label="Jev" size={31} /></span></>}</div>
+        <div className="intro-rivals"><span><b>01</b><ModelIdentity model={game.model} label={game.selected?.label ?? 'Claude Opus 5'} size={31} /></span>{game.paired && <><ArrowRight size={22} /><span><b>02</b><ModelIdentity model={JEV} label="Jev" size={31} /></span></>}</div>
         <div className="presentation-setup"><ModelPicker game={game} /><div className="intro-duration"><span>Time per round</span><DurationPicker game={game} /></div></div>
         <GameNotice game={game} />
         <button className="arcade-start" type="button" onClick={enter} disabled={!game.canStart || game.locked}><Play size={22} fill="currentColor" />{game.nextStage === 2 ? 'Resume round 2' : 'Start the game'}<ArrowRight size={22} /></button>

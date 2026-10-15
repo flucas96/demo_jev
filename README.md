@@ -124,7 +124,7 @@ on port 5173 and the Python API on port 8000. Ctrl+C stops both.
 ## Spot on: human vs LLM, then Jev
 
 The Eraneos demo hub links to [the Waldo game](http://127.0.0.1:8000/waldo).
-Select a gateway vision model, with **Claude Opus 5.5** selected by default when available.
+Select a gateway vision model, with **Claude Opus 5** selected by default when available.
 **Playground** (`/waldo`) runs one round against any model, including Jev. The selector
 stays available during play; changing it ends the current run. Afterward, choose another
 model without repeating a Jev round.
